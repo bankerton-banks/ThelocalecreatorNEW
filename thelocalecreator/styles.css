@@ -9,13 +9,17 @@
 :root {
 	--background-color: #0f1026;
 	--text-color: #c26aa9;
+	--accent-color: #f15b3d;
+	--link-hover-color: #729bd1;
 	--font-family: "Geist", sans-serif;
+	font-family: var(--font-family);
 }
 
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
+	font-family: inherit;
 }
 
 body {
@@ -41,7 +45,11 @@ h1 {
 }
 
 a {
-	color: inherit;
+	color: var(--text-color);
+}
+
+a:hover {
+	color: var(--text-color);
 }
 
 @media (max-width: 600px) {
