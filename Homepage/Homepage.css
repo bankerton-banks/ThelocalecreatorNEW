@@ -3,6 +3,25 @@ body {
     color: var(--text-color);
 }
 
+.site-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.site-wordmark {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: min(50rem, 90vw);
+    height: auto;
+    z-index: 1;
+}
+
 h1 {
     color: var(--text-color);
     font-size: 3rem;
