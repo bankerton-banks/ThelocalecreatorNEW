@@ -57,7 +57,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: calc(100% + 1.6em);
+    width: calc(100% + 2.0em);
     height: calc(100% + 1.00em);
     overflow: visible;
     transform: translate(-50%, -50%);
