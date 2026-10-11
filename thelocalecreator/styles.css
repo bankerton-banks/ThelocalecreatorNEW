@@ -52,6 +52,49 @@ a:hover {
 	color: var(--text-color);
 }
 
+.site-nav a {
+	position: relative;
+	isolation: isolate;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+	color: #729bd1;
+}
+
+.nav-scribble {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: calc(100% + 2em);
+	height: calc(100% + 1em);
+	overflow: visible;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.12s ease;
+}
+
+.nav-scribble.is-active {
+	opacity: 1;
+}
+
+.nav-scribble path {
+	fill: none;
+	stroke: #ff36b9;
+	stroke-width: 1.7;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nav-scribble {
+		transition: none;
+	}
+}
+
 @media (max-width: 600px) {
 	h1 {
 		font-size: 2rem;

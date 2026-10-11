@@ -37,7 +37,7 @@ body {
 }
 
 .site-nav a {
-    color: #C26AA9;
+    color: #FF36B9;
     position: relative;
     display: inline-block;
     isolation: isolate;
@@ -46,44 +46,6 @@ body {
     letter-spacing: 0.02em;
     text-transform: lowercase;
     transition: color 0.2s ease;
-}
-
-.site-nav a:hover,
-.site-nav a:focus-visible {
-    color: #f15b3d;
-}
-
-.nav-scribble {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: calc(100% + 2.0em);
-    height: calc(100% + 1.00em);
-    overflow: visible;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.12s ease;
-}
-
-.nav-scribble.is-active {
-    opacity: 1;
-}
-
-.nav-scribble path {
-    fill: none;
-    stroke: #f15b3d;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .nav-scribble {
-        transition: none;
-    }
 }
 
 .site-wordmark {
