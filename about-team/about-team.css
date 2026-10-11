@@ -2,7 +2,7 @@
     --about-bg: #0F1026;
     --about-pink: #FF36B9;
     --about-blue: #729BD1;
-    --about-line: rgba(114, 155, 209, 0.55);
+    --about-line: #C26AA9;
 }
 
 *,
@@ -49,7 +49,6 @@ body {
     width: 3.2rem;
     height: 3.2rem;
     object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(34%) sepia(98%) saturate(2976%) hue-rotate(289deg) brightness(101%) contrast(103%);
 }
 
 .site-nav {
@@ -62,6 +61,7 @@ body {
 .site-nav a,
 .team-link {
     color: var(--about-pink);
+    font-weight: 400;
     letter-spacing: 0.02em;
     text-decoration: none;
     text-transform: lowercase;
@@ -89,15 +89,15 @@ body {
 }
 
 .team-arrow {
-    width: 2.5rem;
-    height: 3.25rem;
+    width: 3rem;
+    height: 3.75rem;
     overflow: visible;
 }
 
 .team-arrow path {
     fill: none;
     stroke: var(--about-pink);
-    stroke-width: 1.8;
+    stroke-width: 2.8;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
@@ -111,10 +111,19 @@ body {
     margin: 0;
     color: var(--about-pink);
     font-size: 128px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 0.95;
     letter-spacing: -0.06em;
     text-align: left;
+}
+
+.team-title {
+    margin: 7rem 0 0;
+    color: var(--about-pink);
+    font-size: 250px;
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
 }
 
 .lede {
@@ -128,8 +137,8 @@ body {
 
 .two-column-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
-    gap: clamp(2rem, 8vw, 8rem);
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
     align-items: start;
     margin-top: 2.5rem;
 }
@@ -144,6 +153,11 @@ body {
     letter-spacing: -0.06em;
 }
 
+.story-block,
+.goals-block {
+    align-self: start;
+}
+
 .story-block p,
 .goals-block li {
     color: var(--about-blue);
@@ -153,7 +167,7 @@ body {
 }
 
 .story-block p {
-    max-width: 38rem;
+    max-width: 30rem;
     margin: 0 0 1.5rem;
 }
 
