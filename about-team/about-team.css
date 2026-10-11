@@ -70,7 +70,7 @@ body {
 
 .site-nav a {
     display: inline-block;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .team-link:hover,
@@ -118,12 +118,58 @@ body {
 }
 
 .team-title {
-    margin: 7rem 0 0;
+    margin: 7rem 0 2.5rem;
     color: var(--about-pink);
     font-size: 250px;
     font-weight: 500;
     line-height: 0.9;
     letter-spacing: -0.06em;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1200px;
+    gap: 4rem 3rem;
+    margin: 0 auto;
+}
+
+.team-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+    min-width: 0;
+    overflow: hidden;
+    border: 2px solid var(--about-pink);
+}
+
+.team-card > img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+.team-card-info {
+    min-width: 0;
+    padding: 0.6rem;
+    border-left: 2px solid var(--about-pink);
+}
+
+.team-card-info h3 {
+    margin: 0 0 0.35rem;
+    color: var(--about-pink);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.05;
+    white-space: nowrap;
+}
+
+.team-card-info p {
+    margin: 0;
+    color: var(--about-pink);
+    font-size: 24px;
+    line-height: 1.15;
 }
 
 .lede {
@@ -223,6 +269,21 @@ body {
         gap: 1.8rem;
         margin-top: 1.8rem;
     }
+
+    .team-title {
+        margin-top: 4rem;
+        margin-bottom: 1.5rem;
+        font-size: clamp(4rem, 18vw, 8rem);
+    }
+
+    .team-grid {
+        gap: 0.8rem;
+    }
+
+    .team-card-info {
+        padding: 0.4rem;
+    }
+
 }
 
 @media (max-width: 400px) {
@@ -233,4 +294,9 @@ body {
     .site-nav a {
         font-size: 0.68rem;
     }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
