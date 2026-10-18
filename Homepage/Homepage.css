@@ -83,7 +83,6 @@ body {
     position: relative;
     aspect-ratio: 3 / 4;
     transform-style: preserve-3d;
-    transition: transform 0.9s ease-in-out;
 }
 
 .issue-flip-face {
@@ -150,12 +149,6 @@ body {
     .issue figcaption {
         margin-top: 0.5rem;
         font-size: 1rem;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .issue-flipper-card {
-        transition: none;
     }
 }
 
