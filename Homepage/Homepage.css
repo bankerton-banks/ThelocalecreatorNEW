@@ -58,7 +58,7 @@ body {
 .issues {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     width: min(100%, 75rem);
     margin: 3rem auto 0;
 }
