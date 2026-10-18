@@ -75,6 +75,28 @@ body {
     object-fit: cover;
 }
 
+.issue-flipper {
+    perspective: 1000px;
+}
+
+.issue-flipper-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    transform-style: preserve-3d;
+    transition: transform 0.9s ease-in-out;
+}
+
+.issue-flip-face {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.issue-flip-back {
+    transform: rotateY(180deg);
+}
+
 .issue figcaption {
     margin-top: 0.75rem;
     color: #FF36B9;
@@ -128,6 +150,12 @@ body {
     .issue figcaption {
         margin-top: 0.5rem;
         font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .issue-flipper-card {
+        transition: none;
     }
 }
 
