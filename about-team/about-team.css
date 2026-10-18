@@ -129,10 +129,10 @@ body {
 .team-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 1200px;
-    gap: 4rem 3rem;
+    max-width: 1050px;
+    gap: 4rem 4rem;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .team-card {
@@ -140,13 +140,12 @@ body {
     grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
     min-width: 0;
     overflow: hidden;
-    border: 2px solid var(--about-pink);
 }
 
 .team-card > img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1;
     object-fit: cover;
     object-position: center;
 }
@@ -154,7 +153,6 @@ body {
 .team-card-info {
     min-width: 0;
     padding: 0.6rem;
-    border-left: 2px solid var(--about-pink);
 }
 
 .team-card-info h3 {
