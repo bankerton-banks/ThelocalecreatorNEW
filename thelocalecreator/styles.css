@@ -19,6 +19,12 @@
 	--text-color: #c26aa9;
 	--accent-color: #f15b3d;
 	--link-hover-color: #729bd1;
+
+    --primary-web-pink: #FF36B9;
+    --primary-blue: #729BD1;
+    --primary-pink: #C26AA9;
+	--primary-orange: #f15b3d;
+
 	--font-family: "Geist", sans-serif;
 	font-family: var(--font-family);
 }
