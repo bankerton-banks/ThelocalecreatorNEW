@@ -55,6 +55,42 @@ body {
     transition: color 0.2s ease;
 }
 
+.issues {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    width: min(100%, 75rem);
+    margin: 3rem auto 0;
+}
+
+.issue {
+    min-width: 0;
+    margin: 0;
+}
+
+.issue img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.issue figcaption {
+    margin-top: 0.75rem;
+    color: #FF36B9;
+    font-size: 1.25rem;
+}
+
+.issue-upcoming {
+    display: grid;
+    aspect-ratio: 3 / 4;
+    place-items: center;
+    border: 2px solid #FF36B9;
+    color: #FF36B9;
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    text-align: center;
+}
+
 @media (max-width: 700px) {
     .page-shell {
         padding: 0.8rem 1rem 1.5rem;
@@ -76,6 +112,23 @@ body {
     .site-nav a {
         font-size: 0.75rem;
     }
+
+    .issues {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .issue:last-child {
+        grid-column: 1 / -1;
+        width: calc((100% - 1rem) / 2);
+        justify-self: center;
+    }
+
+    .issue figcaption {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 400px) {
@@ -85,5 +138,15 @@ body {
 
     .site-nav a {
         font-size: 0.68rem;
+    }
+
+    .issues {
+        grid-template-columns: 1fr;
+        max-width: 20rem;
+    }
+
+    .issue:last-child {
+        grid-column: auto;
+        width: auto;
     }
 }
