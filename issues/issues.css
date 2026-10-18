@@ -1,6 +1,6 @@
 
 :root {
-    --issues-bg: var(--background-color);
+    --issues-bg: var(--secondary-background-color);
     --issues-web-pink: var(--primary-web-pink);
     --issues-blue: var(--primary-blue);
     --issues-line: var(--primary-line);
