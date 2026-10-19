@@ -1,6 +1,6 @@
 
 :root {
-    --issues-bg: var(--secondary-background-color);
+    --issues-bg: var(--background-color);
     --issues-web-pink: var(--primary-web-pink);
     --issues-blue: var(--primary-blue);
     --issues-line: var(--primary-line);
@@ -80,6 +80,20 @@ body {
 }
 
 /* //// THUMBNAILS  //// */
+.issue-heading {
+    color: var(--issues-web-pink);
+    min-width: 0;
+    text-align: left;
+}
+
+.issue-heading h1 {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.4vw, 1.5rem);
+    line-height: 1.02;
+    font-weight: 500;
+    text-align: left;
+}
+
 .issue-thumbnails {
     display: flex;
     flex-wrap: wrap;
@@ -92,13 +106,11 @@ body {
     width: 100px;
     height: 126px;
     object-fit: cover;
+    border: 1px solid var(--issues-web-pink);
 }
 
 /* //// MAIN LAYOUT //// */
 .issue-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr);
-    gap: 18px;
     align-items: start;
 }
 
@@ -106,7 +118,7 @@ body {
 .featured-issue {
     width: 100%;
     min-width: 0;
-     align-self: start;
+    align-self: start;
 }
 
 .featured-issue img {
@@ -131,7 +143,7 @@ body {
 /* EDITORIAL GALLERY */
 .editorial-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 16px 10px;
     align-content: start;
     align-self: start;
