@@ -66,6 +66,7 @@ a:hover {
 	font-weight: 400;
 }
 
+.site-nav a[aria-current="page"],
 .site-nav a:hover,
 .site-nav a:focus-visible {
 	color: #729bd1;
@@ -92,7 +93,7 @@ a:hover {
 .nav-scribble path {
 	fill: none;
 	stroke: #ff36b9;
-	stroke-width: 1.7;
+	stroke-width: 1;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	vector-effect: non-scaling-stroke;
@@ -144,3 +145,30 @@ a:hover {
 /* Consistent header spacing across the site. */
 body .page-shell { padding-top: .35rem; }
 .page-shell .site-header { margin-top: 0; padding-top: 0; padding-bottom: .4rem; }
+
+
+
+.site-logo-flower {
+    color: #FF36B9;
+    transition: color 180ms ease;
+}
+.site-logo-flower path {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.site-logo-wrap:hover .site-logo-flower,
+.site-logo-wrap:focus-visible .site-logo-flower {
+    color: #F15B3D;
+}
+.site-logo-wrap:hover .site-logo-flower path,
+.site-logo-wrap:focus-visible .site-logo-flower path {
+    animation: flower-spin 1.6s linear infinite;
+}
+@keyframes flower-spin {
+    to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .site-logo-flower { transition: none; }
+    .site-logo-wrap:hover .site-logo-flower path,
+    .site-logo-wrap:focus-visible .site-logo-flower path { animation: none; }
+}

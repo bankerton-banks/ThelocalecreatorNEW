@@ -91,7 +91,7 @@ body {
 .team-arrow path {
     fill: none;
     stroke: var(--about-pink);
-    stroke-width: 2.8;
+    stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
@@ -143,7 +143,7 @@ body {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    object-position: center;
+    object-position: center 20%;
 
 }
 
@@ -313,5 +313,8 @@ body {
     height: auto;
     margin: 1rem auto 0;
 }
+
+
+
 
 
