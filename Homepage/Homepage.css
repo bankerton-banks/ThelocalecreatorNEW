@@ -11,7 +11,7 @@ body {
     width: 100%;
     min-height: 100vh;
     margin: 0 auto;
-    padding: 1rem 1.5rem 2rem;
+    padding: 0.35rem 1.5rem 1rem;
     background: #0F1026;
 }
 
@@ -21,7 +21,8 @@ body {
     align-items: center;
     justify-content: space-between;
     min-height: 4.5rem;
-    padding: 0.2rem 0 0.8rem;
+    padding: 0 0 0.4rem;
+    margin-top: 0;
 }
 
 .site-logo-wrap {
@@ -43,7 +44,7 @@ body {
     color: #FF36B9;
     font-size: 20px;
     font-weight: 400;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.06em;
     text-decoration: none;
     text-transform: lowercase;
     transition: color 0.2s ease;
@@ -53,7 +54,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1.25rem auto 0;
+    margin: 0.5rem auto 0;
 }
 .carousel-controls {
     order: 2;
@@ -114,7 +115,7 @@ body {
     box-shadow: 0 12px 28px #0005;
 }
 .issues.is-gallery {
-    --cover-width: min(calc((100vw - 5rem) / 2.9), 28rem, 52svh);
+    --cover-width: calc((100vw - 3rem) / 3.02);
     display: grid;
     grid-template-columns: var(--cover-width);
     justify-content: center;
@@ -122,7 +123,7 @@ body {
     width: 100%;
     gap: 0;
     overflow: visible;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     touch-action: pan-y;
     isolation: isolate;
 }
@@ -132,16 +133,17 @@ body {
     transition: transform 400ms ease, opacity 400ms ease;
 }
 .is-gallery .issue[data-depth="0"] { z-index: 3; transform: translateX(0); opacity: 1; }
-.is-gallery .issue[data-depth="1"] { z-index: 1; transform: translateX(105%) scale(.8); opacity: .6; }
-.is-gallery .issue[data-depth="2"] { z-index: 1; transform: translateX(-105%) scale(.8); opacity: .6; }
+.is-gallery .issue[data-depth="1"] { z-index: 1; transform: translateX(103%) scale(.96); opacity: .6; }
+.is-gallery .issue[data-depth="2"] { z-index: 1; transform: translateX(-103%) scale(.96); opacity: .6; }
 .is-gallery .issue:not([data-depth="0"]) { pointer-events: none; }
 .is-gallery .issue:not([data-depth="0"]) figcaption { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
     .is-gallery .issue { transition: none; }
 }
 @media (max-width: 700px) {
+    .issues.is-gallery { --cover-width: calc((100vw - 2rem) / 3.02); }
     .page-shell {
-        padding: 0.8rem 1rem 1.5rem;
+        padding: 0.35rem 1rem 1rem;
     }
 
     .site-header {
@@ -180,4 +182,7 @@ body {
 
 
 
+
+
+.issue figcaption, .issue-upcoming, .carousel-controls { letter-spacing: -0.045em; }
 

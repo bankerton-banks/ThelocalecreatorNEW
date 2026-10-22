@@ -123,7 +123,7 @@ body {
 .team-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 1050px;
+    max-width: 1200px;
     gap: 4rem 4rem;
     width: 100%;
     margin: 0 auto;
@@ -131,9 +131,11 @@ body {
 
 .team-card {
     display: grid;
-    grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: start;
     min-width: 0;
     overflow: hidden;
+    border: 2px solid var(--about-pink);
 }
 
 .team-card > img {
@@ -142,11 +144,13 @@ body {
     aspect-ratio: 1;
     object-fit: cover;
     object-position: center;
+
 }
 
 .team-card-info {
     min-width: 0;
     padding: 0.6rem;
+    overflow-wrap: anywhere;
 }
 
 .team-card-info h3 {
@@ -265,7 +269,8 @@ body {
     }
 
     .team-grid {
-        gap: 0.8rem;
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .team-card-info {
@@ -288,4 +293,25 @@ body {
     }
 
 }
+
+
+/* About-page typography refinements. */
+.team-link { letter-spacing: .06em; }
+.team-card-info h3 { letter-spacing: -.045em; }
+.team-card-info p { letter-spacing: -.055em; }
+.team-title-initial { margin-right: .025em; }
+
+
+
+.team-signature {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 10rem;
+    object-fit: contain;
+    object-position: center;
+    height: auto;
+    margin: 1rem auto 0;
+}
+
 

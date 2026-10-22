@@ -133,10 +133,14 @@ a:hover {
     font-weight: 300;
     font-display: swap;
 }
-.site-header { margin-top: .75rem; }
-.site-header .site-nav a { font-weight: 300; }
+.site-header { margin-top: 0; }
+.site-header .site-nav a { font-weight: 300; letter-spacing: -0.06em; }
 
 .site-logo.site-logo-symbol { width: 4.25rem; height: 4.25rem; }
 @media (max-width: 700px) {
     .site-logo.site-logo-symbol { width: 3.25rem; height: 3.25rem; }
 }
+
+/* Consistent header spacing across the site. */
+body .page-shell { padding-top: .35rem; }
+.page-shell .site-header { margin-top: 0; padding-top: 0; padding-bottom: .4rem; }
