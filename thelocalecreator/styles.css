@@ -1,174 +1,207 @@
 @font-face {
-	font-family: "Geist";
-	src: url("https://cdn.jsdelivr.net/fontsource/fonts/geist@latest/latin-400-normal.woff2") format("woff2");
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/geist@latest/latin-400-normal.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "Geist";
-	src: url("https://cdn.jsdelivr.net/fontsource/fonts/geist@latest/latin-500-normal.woff2") format("woff2");
-	font-style: normal;
-	font-weight: 500;
-	font-display: swap;
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/geist@latest/latin-500-normal.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
 }
 
 :root {
-	--background-color: #0f1026;
-	--text-color: #c26aa9;
-	--accent-color: #f15b3d;
-	--link-hover-color: #729bd1;
-	--font-family: "Geist", sans-serif;
-	font-family: var(--font-family);
+  --background-color: #0f1026;
+  --text-color: #c26aa9;
+  --accent-color: #f15b3d;
+  --link-hover-color: #729bd1;
+  --font-family: "Geist", sans-serif;
+  font-family: var(--font-family);
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-	font-family: inherit;
+  box-sizing: border-box;
+  font-family: inherit;
 }
 
 body {
-	font-family: var(--font-family);
-	background-color: var(--background-color);
-	color: var(--text-color);
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0;
-	padding: 2rem;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 2rem;
 }
 
 h1 {
-	max-width: 52rem;
-	margin: 0;
-	font-size: 3rem;
-	font-weight: 400;
-	line-height: 1.1;
-	letter-spacing: -0.02em;
-	text-align: center;
+  max-width: 52rem;
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
 }
 
 a {
-	color: var(--text-color);
+  color: var(--text-color);
 }
 
 a:hover {
-	color: var(--text-color);
+  color: var(--text-color);
 }
 
 .site-nav a {
-	position: relative;
-	isolation: isolate;
-	font-weight: 400;
+  position: relative;
+  isolation: isolate;
+  font-weight: 400;
 }
 
 .site-nav a[aria-current="page"],
 .site-nav a:hover,
 .site-nav a:focus-visible {
-	color: #729bd1;
+  color: #729bd1;
 }
 
 .nav-scribble {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: calc(100% + 2em);
-	height: calc(100% + 1em);
-	overflow: visible;
-	transform: translate(-50%, -50%);
-	z-index: -1;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 0.12s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 2em);
+  height: calc(100% + 1em);
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
 }
 
 .nav-scribble.is-active {
-	opacity: 1;
+  opacity: 1;
 }
 
 .nav-scribble path {
-	fill: none;
-	stroke: #ff36b9;
-	stroke-width: 1;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	vector-effect: non-scaling-stroke;
+  fill: none;
+  stroke: #ff36b9;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.nav-scribble {
-		transition: none;
-	}
+  .nav-scribble {
+    transition: none;
+  }
 }
 
 @media (max-width: 600px) {
-	h1 {
-		font-size: 2rem;
-	}
+  h1 {
+    font-size: 2rem;
+  }
 }
 
 /* Shared wordmark sizing for every site header. */
-.site-logo-wrap { flex-shrink: 0; }
+.site-logo-wrap {
+  flex-shrink: 0;
+}
 .site-logo {
-    display: block;
-    width: 9rem;
-    height: auto;
-    object-fit: contain;
+  display: block;
+  width: 9rem;
+  height: auto;
+  object-fit: contain;
 }
 @media (max-width: 700px) {
-    .site-logo { width: 6rem; }
+  .site-logo {
+    width: 6rem;
+  }
 }
 @media (max-width: 360px) {
-    .site-header { flex-wrap: wrap; gap: .75rem; }
-    .site-nav { flex-wrap: wrap; }
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .site-nav {
+    flex-wrap: wrap;
+  }
 }
 
 @font-face {
-    font-family: "Geist";
-    src: url("https://cdn.jsdelivr.net/fontsource/fonts/geist@latest/latin-300-normal.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/geist@latest/latin-300-normal.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
 }
-.site-header { margin-top: 0; }
-.site-header .site-nav a { font-weight: 300; letter-spacing: -0.06em; }
+.site-header {
+  margin-top: 0;
+}
+.site-header .site-nav a {
+  font-weight: 300;
+  letter-spacing: -0.06em;
+}
 
-.site-logo.site-logo-symbol { width: 4.25rem; height: 4.25rem; }
+.site-logo.site-logo-symbol {
+  width: 4.25rem;
+  height: 4.25rem;
+}
 @media (max-width: 700px) {
-    .site-logo.site-logo-symbol { width: 3.25rem; height: 3.25rem; }
+  .site-logo.site-logo-symbol {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
 }
 
 /* Consistent header spacing across the site. */
-body .page-shell { padding-top: .35rem; }
-.page-shell .site-header { margin-top: 0; padding-top: 0; padding-bottom: .4rem; }
-
-
+body .page-shell {
+  padding-top: 0.35rem;
+}
+.page-shell .site-header {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0.4rem;
+}
 
 .site-logo-flower {
-    color: #FF36B9;
-    transition: color 180ms ease;
+  color: #ff36b9;
+  transition: color 180ms ease;
 }
 .site-logo-flower path {
-    transform-box: fill-box;
-    transform-origin: center;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 .site-logo-wrap:hover .site-logo-flower,
 .site-logo-wrap:focus-visible .site-logo-flower {
-    color: #F15B3D;
+  color: #f15b3d;
 }
 .site-logo-wrap:hover .site-logo-flower path,
 .site-logo-wrap:focus-visible .site-logo-flower path {
-    animation: flower-spin 1.6s linear infinite;
+  animation: flower-spin 1.6s linear infinite;
 }
 @keyframes flower-spin {
-    to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-    .site-logo-flower { transition: none; }
-    .site-logo-wrap:hover .site-logo-flower path,
-    .site-logo-wrap:focus-visible .site-logo-flower path { animation: none; }
+  .site-logo-flower {
+    transition: none;
+  }
+  .site-logo-wrap:hover .site-logo-flower path,
+  .site-logo-wrap:focus-visible .site-logo-flower path {
+    animation: none;
+  }
 }

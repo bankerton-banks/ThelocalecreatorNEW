@@ -1,52 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
-    <link rel="stylesheet" href="../thelocalecreator/styles.css">
-    <link rel="stylesheet" href="Homepage.css">
+    <link rel="stylesheet" href="../thelocalecreator/styles.css" />
+    <link rel="stylesheet" href="Homepage.css" />
     <script src="../scripts/navigation.js" defer></script>
     <script src="Homepage.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="page-shell">
-        <header class="site-header">
-            <a class="site-logo-wrap" href="Homepage.html" aria-label="The Locale Creator home">
-                <img class="site-logo" src="../Assets/wordmark.svg" alt="The Locale Creator">
-            </a>
+      <header class="site-header">
+        <a
+          class="site-logo-wrap"
+          href="Homepage.html"
+          aria-label="The Locale Creator home"
+        >
+          <img
+            class="site-logo"
+            src="../Assets/wordmark.svg"
+            alt="The Locale Creator"
+          />
+        </a>
 
-            <nav class="site-nav" aria-label="Main menu">
-                <a href="Homepage.html" aria-current="page">issues</a>
-                <a href="../about-team/about-team.html">about</a>
-                <a href="../submit/submit.html">submit</a>
-                <a href="#">donate</a>
-                <a href="#">contact</a>
-            </nav>
-        </header>
+        <nav class="site-nav" aria-label="Main menu">
+          <a href="Homepage.html" aria-current="page">issues</a>
+          <a href="../about-team/about-team.html">about</a>
+          <a href="../submit/submit.html">submit</a>
+          <a href="#">donate</a>
+          <a href="#">contact</a>
+        </nav>
+      </header>
 
-        <main>
-            <section class="issue-carousel" aria-label="Magazine issues" aria-roledescription="carousel">
-                <div class="carousel-controls" hidden>
-                    <span data-issue-position aria-live="polite" aria-atomic="true">1 / 3</span>
-                    <button type="button" data-issue-prev aria-label="Previous issue" aria-controls="issues">&#8592;</button>
-                    <button type="button" data-issue-next aria-label="Next issue" aria-controls="issues">&#8594;</button>
-                </div>
-                <div class="issues" id="issues" tabindex="0" role="group" aria-label="Scroll to browse magazine issues">
-                <div class="issue issue-upcoming">Fall 2026</div>
-                <figure class="issue">
-                    <img src="../screenshots/issue-2.jpg" alt="Spring 2026 issue cover">
-                    <figcaption>Spring 2026</figcaption>
-                </figure>
-                <figure class="issue">
-                    <img src="../screenshots/issue-1.png" alt="Fall 2025 issue cover">
-                    <figcaption>Fall 2025</figcaption>
-                </figure>
-                </div>
-            </section>
-        </main>
+      <main>
+        <section
+          class="issue-carousel"
+          aria-label="Magazine issues"
+          aria-roledescription="carousel"
+        >
+          <div class="carousel-controls" hidden>
+            <span data-issue-position aria-live="polite" aria-atomic="true"
+              >1 / 3</span
+            >
+            <button
+              type="button"
+              data-issue-prev
+              aria-label="Previous issue"
+              aria-controls="issues"
+            >
+              &#8592;
+            </button>
+            <button
+              type="button"
+              data-issue-next
+              aria-label="Next issue"
+              aria-controls="issues"
+            >
+              &#8594;
+            </button>
+          </div>
+          <div
+            class="issues"
+            id="issues"
+            tabindex="0"
+            role="group"
+            aria-label="Scroll to browse magazine issues"
+          >
+            <div class="issue issue-upcoming">Fall 2026</div>
+            <figure class="issue">
+              <img
+                src="../screenshots/issue-2.jpg"
+                alt="Spring 2026 issue cover"
+              />
+              <figcaption>Spring 2026</figcaption>
+            </figure>
+            <figure class="issue">
+              <img
+                src="../screenshots/issue-1.png"
+                alt="Fall 2025 issue cover"
+              />
+              <figcaption>Fall 2025</figcaption>
+            </figure>
+          </div>
+        </section>
+      </main>
     </div>
-</body>
+  </body>
 </html>
-
-

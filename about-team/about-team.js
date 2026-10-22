@@ -5,59 +5,67 @@ const teamTitle = document.querySelector("#team-title");
 let scrollAnimationFrame;
 
 teamLink?.addEventListener("click", (event) => {
-	if (!teamTitle) return;
+  if (!teamTitle) return;
 
-	event.preventDefault();
-	window.history.pushState(null, "", teamLink.hash);
+  event.preventDefault();
+  window.history.pushState(null, "", teamLink.hash);
 
-	const start = window.scrollY;
-	const distance = teamTitle.getBoundingClientRect().top;
-	const duration = 900;
-	const startTime = performance.now();
-	window.cancelAnimationFrame(scrollAnimationFrame);
+  const start = window.scrollY;
+  const distance = teamTitle.getBoundingClientRect().top;
+  const duration = 900;
+  const startTime = performance.now();
+  window.cancelAnimationFrame(scrollAnimationFrame);
 
-	function animateScroll(time) {
-		const progress = Math.min((time - startTime) / duration, 1);
-		const easedProgress = 1 - (1 - progress) ** 3;
+  function animateScroll(time) {
+    const progress = Math.min((time - startTime) / duration, 1);
+    const easedProgress = 1 - (1 - progress) ** 3;
 
-		window.scrollTo(0, start + distance * easedProgress);
+    window.scrollTo(0, start + distance * easedProgress);
 
-		if (progress < 1) {
-			scrollAnimationFrame = window.requestAnimationFrame(animateScroll);
-		}
-	}
+    if (progress < 1) {
+      scrollAnimationFrame = window.requestAnimationFrame(animateScroll);
+    }
+  }
 
-	scrollAnimationFrame = window.requestAnimationFrame(animateScroll);
+  scrollAnimationFrame = window.requestAnimationFrame(animateScroll);
 });
 
-// Redraw one stroke at a time while the other strokes stay visible.
+// Keep the drawn arrow intact; a seamless ink pass travels along its strokes.
 if (teamLink) {
-    const arrowPaths = Array.from(teamLink.querySelectorAll('.team-arrow path'));
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let arrowAnimations = [];
+  const arrow = teamLink.querySelector(".team-arrow");
+  const basePaths = Array.from(arrow.querySelectorAll("path"));
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let animations = [];
+  let overlays = [];
 
-    function animateTeamArrow() {
-        arrowAnimations.forEach((animation) => animation.cancel());
-        arrowAnimations = [];
-        arrowPaths.forEach((path, index) => {
-            const length = path.getTotalLength();
-            path.style.strokeDasharray = String(length);
-            path.style.strokeDashoffset = '0';
-            if (reducedMotion.matches) return;
-            arrowAnimations.push(path.animate([
-                { strokeDashoffset: length, offset: 0 },
-                { strokeDashoffset: 0, offset: 1 / arrowPaths.length },
-                { strokeDashoffset: 0, offset: 1 }
-            ], {
-                duration: 1800,
-                delay: -index * (1800 / arrowPaths.length),
-                iterations: Infinity,
-                easing: 'linear'
-            }));
-        });
-    }
-
-    reducedMotion.addEventListener('change', animateTeamArrow);
-    animateTeamArrow();
+  function animateTeamArrow() {
+    animations.forEach((animation) => animation.cancel());
+    overlays.forEach((path) => path.remove());
+    animations = [];
+    overlays = [];
+    basePaths.forEach((path, index) => {
+      path.style.opacity = reducedMotion.matches ? "1" : ".65";
+      if (reducedMotion.matches) return;
+      const overlay = path.cloneNode(true);
+      const length = path.getTotalLength();
+      overlay.style.opacity = "1";
+      overlay.style.strokeDasharray = `${length * 0.35} ${length * 0.65}`;
+      arrow.append(overlay);
+      overlays.push(overlay);
+      // Moving by exactly one dash period makes the loop boundary seamless.
+      animations.push(
+        overlay.animate(
+          [{ strokeDashoffset: 0 }, { strokeDashoffset: -length }],
+          {
+            duration: 1800,
+            delay: -index * 360,
+            iterations: Infinity,
+            easing: "linear",
+          },
+        ),
+      );
+    });
+  }
+  reducedMotion.addEventListener("change", animateTeamArrow);
+  animateTeamArrow();
 }
-
