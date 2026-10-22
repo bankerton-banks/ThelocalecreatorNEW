@@ -30,12 +30,6 @@ body {
     justify-content: center;
 }
 
-.site-logo {
-    display: block;
-    width: 7rem;
-    height: auto;
-    object-fit: contain;
-}
 
 .site-nav {
     display: flex;
@@ -55,63 +49,96 @@ body {
     transition: color 0.2s ease;
 }
 
-.issues {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
-    width: min(100%, 75rem);
-    margin: 3rem auto 0;
+.issue-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.25rem auto 0;
 }
-
+.carousel-controls {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    color: #FF36B9;
+}
+.carousel-controls[hidden] { display: none; }
+.carousel-controls button {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid #FF36B9;
+    border-radius: 50%;
+    color: #FF36B9;
+    background: transparent;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.carousel-controls button:hover { background: #FF36B9; color: #0F1026; }
+.carousel-controls button:focus-visible,
+.issues:focus-visible { outline: 2px solid #729BD1; outline-offset: 6px; }
+.issues {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    overflow-x: auto;
+}
 .issue {
+    flex: 0 0 min(70vw, 28rem, 52svh);
     min-width: 0;
     margin: 0;
 }
-
 .issue img {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
-    object-fit: cover;
+    object-fit: contain;
+    box-shadow: 0 12px 28px #0005;
 }
-
-.issue-flipper {
-    perspective: 1000px;
-}
-
-.issue-flipper-card {
-    position: relative;
-    aspect-ratio: 3 / 4;
-    transform-style: preserve-3d;
-}
-
-.issue-flip-face {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    backface-visibility: hidden;
-}
-
-.issue-flip-back {
-    transform: rotateY(180deg);
-}
-
 .issue figcaption {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
     color: #FF36B9;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    text-align: center;
 }
-
 .issue-upcoming {
     display: grid;
     aspect-ratio: 3 / 4;
     place-items: center;
     border: 2px solid #FF36B9;
+    background: #0F1026;
     color: #FF36B9;
-    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
     text-align: center;
+    box-shadow: 0 12px 28px #0005;
 }
-
+.issues.is-gallery {
+    --cover-width: min(calc((100vw - 5rem) / 2.9), 28rem, 52svh);
+    display: grid;
+    grid-template-columns: var(--cover-width);
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    gap: 0;
+    overflow: visible;
+    padding: 1rem 0;
+    touch-action: pan-y;
+    isolation: isolate;
+}
+.is-gallery .issue {
+    grid-area: 1 / 1;
+    width: 100%;
+    transition: transform 400ms ease, opacity 400ms ease;
+}
+.is-gallery .issue[data-depth="0"] { z-index: 3; transform: translateX(0); opacity: 1; }
+.is-gallery .issue[data-depth="1"] { z-index: 1; transform: translateX(105%) scale(.8); opacity: .6; }
+.is-gallery .issue[data-depth="2"] { z-index: 1; transform: translateX(-105%) scale(.8); opacity: .6; }
+.is-gallery .issue:not([data-depth="0"]) { pointer-events: none; }
+.is-gallery .issue:not([data-depth="0"]) figcaption { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) {
+    .is-gallery .issue { transition: none; }
+}
 @media (max-width: 700px) {
     .page-shell {
         padding: 0.8rem 1rem 1.5rem;
@@ -122,9 +149,6 @@ body {
         align-items: center;
     }
 
-    .site-logo {
-        width: 5rem;
-    }
 
     .site-nav {
         gap: 0.7rem;
@@ -134,17 +158,7 @@ body {
         font-size: 0.75rem;
     }
 
-    .issues {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-        margin-top: 2rem;
-    }
 
-    .issue:last-child {
-        grid-column: 1 / -1;
-        width: calc((100% - 1rem) / 2);
-        justify-self: center;
-    }
 
     .issue figcaption {
         margin-top: 0.5rem;
@@ -161,13 +175,9 @@ body {
         font-size: 0.68rem;
     }
 
-    .issues {
-        grid-template-columns: 1fr;
-        max-width: 20rem;
-    }
 
-    .issue:last-child {
-        grid-column: auto;
-        width: auto;
-    }
 }
+
+
+
+

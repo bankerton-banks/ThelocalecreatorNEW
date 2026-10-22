@@ -44,12 +44,6 @@ body {
     justify-content: center;
 }
 
-.site-logo {
-    display: block;
-    width: 3.2rem;
-    height: 3.2rem;
-    object-fit: contain;
-}
 
 .site-nav {
     display: flex;
@@ -235,10 +229,6 @@ body {
         align-items: center;
     }
 
-    .site-logo {
-        width: 2.8rem;
-        height: 2.8rem;
-    }
 
     .site-nav {
         gap: 0.7rem;
@@ -298,3 +288,4 @@ body {
     }
 
 }
+
