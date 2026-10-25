@@ -4,6 +4,7 @@
     --issues-web-pink: var(--primary-web-pink);
     --issues-blue: var(--primary-blue);
     --issues-line: var(--primary-line);
+    --spread-ratio: 1.6;
 }
 
 *,
@@ -97,16 +98,55 @@ body {
 .issue-thumbnails {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 16px;
     margin-bottom: 16px;
     margin-top: 16px;
 }
 
+.issue-thumb {
+    position: relative;
+    display: block;
+}
+
+/* Scribble sits on top of the cover and circles it.
+   Keep the +18px in sync with the viewBox in issues.js */
+.thumb-scribble {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100% + 18px);
+    height: calc(100% + 18px);
+    overflow: visible;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.thumb-scribble.is-active {
+    opacity: 1;
+}
+
+.thumb-scribble path {
+    fill: none;
+    stroke: #ff36b9;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .thumb-scribble {
+        transition: none;
+    }
+}
+
 .issue-thumbnails img {
+    display: block;
     width: 100px;
     height: 126px;
     object-fit: cover;
-    border: 1px solid var(--issues-web-pink);
 }
 
 /* //// MAIN LAYOUT //// */
@@ -154,6 +194,39 @@ body {
     display: block;
     width: 100%;
     height: auto;
+    /* Custom cursor: swap in your image path. The two numbers are the click point
+       (x y in px from the image's top-left). "pointer" is the fallback if the image fails. */
+    cursor: url("../issues/nav/arrow.png") 16 16, pointer;
+}
+
+/* First cell: heading on the left, front cover on the right */
+.grid-intro {
+    position: relative;
+    aspect-ratio: var(--spread-ratio); /* same height as a spread */
+}
+
+.issue-heading {
+    margin: 0;
+    color: var(--issues-web-pink);
+    font-size: 28px;
+    line-height: 1.05;
+    font-weight: 500;
+    text-align: left;
+}
+
+.editorial-grid .cover--front {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: 100%;        /* matches spread height, keeps its own shape */
+}
+
+/* Back cover: spread height, sits on the left of its cell */
+.editorial-grid .cover--back {
+    aspect-ratio: var(--spread-ratio);
+    object-fit: contain;
+    object-position: left center;
 }
 
 
