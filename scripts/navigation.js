@@ -35,6 +35,9 @@ window.LocaleCreator.initializeNavScribbles =
 
     document.querySelectorAll(".site-nav a").forEach((link) => {
       if (link.querySelector(".nav-scribble")) return;
+      if (link.hasAttribute("data-inert")) {
+        link.addEventListener("click", (event) => event.preventDefault());
+      }
       const isCurrentPage = link.getAttribute("aria-current") === "page";
       const strokes = [
         createOvalScribble(link.textContent.trim().toLowerCase()),
