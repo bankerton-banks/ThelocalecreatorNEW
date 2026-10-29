@@ -1,0 +1,37 @@
+body { display: block; margin: 0; padding: 0; background: #0F1026; color: #729BD1; }
+.page-shell { width: 100%; min-height: 100svh; padding: .35rem 1.5rem 1rem; }
+.site-header { position: relative; display: flex; align-items: center; justify-content: space-between; min-height: 4.5rem; border-bottom: 1px solid #FF36B9; }
+.site-logo-wrap { display: flex; align-items: center; justify-content: center; }
+.site-nav { display: flex; align-items: center; gap: 1.8rem; margin-left: auto; }
+.site-nav a { display: inline-block; color: #FF36B9; font-size: 20px; text-decoration: none; text-transform: lowercase; }
+.submit-content { position: relative; isolation: isolate; min-height: calc(100svh - 6rem); overflow: hidden; }
+.submit-intro { position: relative; z-index: 1; padding-top: 1.4rem; pointer-events: none; }
+.submit-intro h1 { margin: 0; color: #FF36B9; font-size: clamp(4rem, 8.9vw, 8rem); font-weight: 500; line-height: .95; letter-spacing: -.06em; text-align: left; }
+.submit-intro p { max-width: 52rem; margin: 1.5rem 0 0; font-size: clamp(1.25rem, 2.3vw, 1.8rem); line-height: 1.08; letter-spacing: -.04em; }
+.submission-action { position: relative; z-index: 2; display: flex; justify-content: center; margin-top: clamp(2rem, 6vh, 4.5rem); }
+.submission-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 3.6rem; padding: .35rem .4rem .35rem 1.5rem; border: 0; border-radius: 99px; background: #FF36B9; color: #0F1026; font-size: clamp(1.1rem, 1.8vw, 1.5rem); letter-spacing: -.045em; opacity: 1; cursor: default; }
+.submission-button svg { width: 2.8rem; height: 2.8rem; flex: none; }
+.shape-field { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.floating-shape { position: absolute; width: clamp(10rem, 30vw, 30rem); aspect-ratio: 1; display: grid; place-items: center; will-change: transform; }
+.floating-shape svg { display: block; width: 70%; height: 70%; overflow: visible; }
+.floating-shape:nth-child(1) { left: 0; top: 40%; color: #729BD1; }
+.floating-shape:nth-child(2) { left: 35%; top: 55%; color: #FF36B9; }
+.floating-shape:nth-child(3) { right: 0; top: 35%; color: #F15B3D; width: clamp(8rem, 22vw, 22rem); }
+/* Keep the introductory copy legible when shapes pass behind it. */
+.submit-intro { background: linear-gradient(#0F1026 75%, #0F1026E8); padding-bottom: 1.25rem; }
+@media (max-width: 700px) {
+    .page-shell { padding: .35rem 1rem 1rem; }
+    .site-header { min-height: 3.7rem; }
+    .site-nav { gap: .7rem; }
+    .site-nav a { font-size: .75rem; }
+    .submit-content { min-height: max(42rem, calc(100svh - 5rem)); }
+    .submit-intro p { max-width: 32rem; }
+    .submission-action { margin-top: 1.5rem; }
+}
+@media (max-width: 400px) {
+    .site-nav { gap: .45rem; }
+    .site-nav a { font-size: .68rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .floating-shape { will-change: auto; }
+}

@@ -5,33 +5,6 @@ window.LocaleCreator.initializeNavScribbles =
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    function createOvalScribble(label) {
-      // Stable variations keep each link's scribble the same on every page.
-      const seed = Array.from(label).reduce(
-        (value, char) => (value * 31 + char.charCodeAt(0)) >>> 0,
-        7,
-      );
-      const phase = ((seed % 360) * Math.PI) / 180;
-      const tilt = (((seed % 11) - 5) * Math.PI) / 180;
-      const start = Math.PI + phase * 0.3;
-      const points = [];
-      for (let step = 0; step <= 400; step++) {
-        const progress = step / 400;
-        const angle = start + progress * Math.PI * 10;
-        const radiusX = 55 + 2.2 * Math.sin(progress * 11 + phase);
-        const radiusY = 17 + 1.8 * Math.cos(progress * 15 + phase);
-        const x = radiusX * Math.cos(angle);
-        const y = radiusY * Math.sin(angle);
-        const centerX = 70 + 1.3 * Math.sin(progress * 9 + phase);
-        const centerY = 28 + 1.1 * Math.cos(progress * 13 + phase);
-        const px = centerX + x * Math.cos(tilt) - y * Math.sin(tilt);
-        const py = centerY + x * Math.sin(tilt) + y * Math.cos(tilt);
-        points.push(
-          (step === 0 ? "M " : "L ") + px.toFixed(2) + " " + py.toFixed(2),
-        );
-      }
-      return points.join(" ");
-    }
 
     document.querySelectorAll(".site-nav a").forEach((link) => {
       if (link.querySelector(".nav-scribble")) return;
@@ -40,7 +13,10 @@ window.LocaleCreator.initializeNavScribbles =
       }
       const isCurrentPage = link.getAttribute("aria-current") === "page";
       const strokes = [
-        createOvalScribble(link.textContent.trim().toLowerCase()),
+		"M 13 30 C 11 18, 34 10, 62 10 C 91 8, 123 15, 127 27 C 132 39, 106 47, 77 46 C 48 47, 18 42, 13 30 Z",
+		"M 19 25 C 29 12, 55 13, 79 12 C 105 12, 126 20, 121 31 C 116 42, 91 43, 66 44 C 40 45, 20 39, 19 25 Z",
+		"M 25 37 C 43 43, 72 39, 94 37 C 109 35, 118 30, 123 25"
+
       ];
       const scribble = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -86,7 +62,7 @@ window.LocaleCreator.initializeNavScribbles =
           path.animate(
             [{ strokeDashoffset: length }, { strokeDashoffset: 0 }],
             {
-              duration: 1100,
+              duration: 420,
               easing: "linear",
               fill: "forwards",
             },

@@ -1,6 +1,6 @@
 body {
   display: block;
-  min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
   padding: 0;
   background: #0f1026;
@@ -9,7 +9,7 @@ body {
 
 .page-shell {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100svh;
   margin: 0 auto;
   padding: 0.35rem 1.5rem 1rem;
   background: #0f1026;
@@ -70,16 +70,15 @@ body {
 .carousel-controls button {
   width: 2.75rem;
   height: 2.75rem;
-  border: 1px solid #ff36b9;
-  border-radius: 50%;
+  border: 0;
+  border-radius: 0;
   color: #ff36b9;
   background: transparent;
   font-size: 1.4rem;
   cursor: pointer;
 }
 .carousel-controls button:hover {
-  background: #ff36b9;
-  color: #0f1026;
+  opacity: 0.65;
 }
 .carousel-controls button:focus-visible,
 .issues:focus-visible {
@@ -101,7 +100,7 @@ body {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: contain;
+  object-fit: cover;
   box-shadow: 0 12px 28px #0005;
 }
 .issue figcaption {
@@ -122,7 +121,7 @@ body {
   box-shadow: 0 12px 28px #0005;
 }
 .issues.is-gallery {
-  --cover-width: calc((100vw - 3rem) / 3.02);
+  --cover-width: min(26rem, calc((100vw - 3rem) / 3.12), calc((100svh - 12rem) * 0.75));
   display: grid;
   grid-template-columns: var(--cover-width);
   justify-content: center;
@@ -169,7 +168,7 @@ body {
 }
 @media (max-width: 700px) {
   .issues.is-gallery {
-    --cover-width: calc((100vw - 2rem) / 3.02);
+    --cover-width: min(calc((100vw - 2rem) / 3.12), calc((100svh - 11rem) * 0.75));
   }
   .page-shell {
     padding: 0.35rem 1rem 1rem;
@@ -208,4 +207,14 @@ body {
 .issue-upcoming,
 .carousel-controls {
   letter-spacing: -0.045em;
+}
+
+.carousel-controls button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.carousel-controls [data-issue-prev] img {
+  transform: rotate(180deg);
 }
