@@ -27,7 +27,8 @@
 
         </header>
 
-        <main class="content">
+    <main class="content">
+
     <!-- Add or remove cover images here -->
     <section class="issue-thumbnails">
         <a href="#" class="issue-thumb"><img src="/issues/covers/issue_1 front cover.jpg" alt="Issue 1 Cover"></a>
@@ -79,7 +80,24 @@
 
     </section>
 
-</main>
-</div>
+    <dialog class="lightbox" aria-label="Issue viewer">
+        <button class="lightbox-btn lightbox-close" aria-label="Close">
+            <svg viewBox="0 0 40 40"><path d="M6 6 L34 34 M34 6 L6 34"/></svg>
+        </button>
+
+        <button class="lightbox-btn lightbox-prev" aria-label="Previous page">
+            <svg viewBox="0 0 48 24"><path d="M46 12 H4 M14 3 L4 12 L14 21"/></svg>
+        </button>
+
+        <img class="lightbox-img" src="" alt="">
+
+        <button class="lightbox-btn lightbox-next" aria-label="Next page">
+            <svg viewBox="0 0 48 24"><path d="M2 12 H44 M34 3 L44 12 L34 21"/></svg>
+        </button>
+    </dialog>
+
+    </main>
+    </div>
 </body>
+</html>
 

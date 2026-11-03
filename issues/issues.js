@@ -1,7 +1,22 @@
+/*
+   ISSUES PAGE
+   1. Nav scribbles   (from /scripts/navigation.js)
+   2. Thumbnail scribbles
+   3. Lightbox
+*/
+
+
+/*
+   NAV SCRIBBLES
+*/
+
 window.LocaleCreator.initializeNavScribbles();
 
-// Thumbnail scribble: two closed loops shaped for a portrait cover.
-// The viewBox matches the scribble box (cover + 18px), so the loops aren't stretched.
+
+/*
+   THUMBNAIL SCRIBBLES
+*/
+
 function initializeThumbScribbles() {
 	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 	const strokes = [
@@ -10,6 +25,8 @@ function initializeThumbScribbles() {
 	];
 
 	document.querySelectorAll(".issue-thumb").forEach((link) => {
+
+		// --- the SVG ---
 		const scribble = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		scribble.setAttribute("viewBox", "0 0 118 144");
 		scribble.setAttribute("preserveAspectRatio", "none");
@@ -24,6 +41,7 @@ function initializeThumbScribbles() {
 
 		link.append(scribble);
 
+		// Hide each stroke until it's drawn
 		const paths = [...scribble.querySelectorAll("path")];
 		paths.forEach((path) => {
 			const length = path.getTotalLength();
@@ -31,6 +49,7 @@ function initializeThumbScribbles() {
 			path.style.strokeDashoffset = `${length}`;
 		});
 
+		// --- Show / hide ---
 		function drawScribble() {
 			scribble.classList.add("is-active");
 
@@ -61,7 +80,7 @@ function initializeThumbScribbles() {
 			scribble.classList.remove("is-active");
 		}
 
-		// Clicking keeps this scribble on and clears the previously selected thumbnail
+		// --- Select (keeps scribble on, clears the previous one) ---
 		function selectThumb(event) {
 			event.preventDefault();
 
@@ -76,6 +95,7 @@ function initializeThumbScribbles() {
 			link.setAttribute("aria-current", "true");
 		}
 
+		// --- Events ---
 		link.addEventListener("click", selectThumb);
 		link.addEventListener("pointerenter", drawScribble);
 		link.addEventListener("focus", drawScribble);
@@ -85,3 +105,52 @@ function initializeThumbScribbles() {
 }
 
 initializeThumbScribbles();
+
+
+/*
+   3. LIGHTBOX
+   Open: Click an editorial image
+   Prev/next: Arrow keys as buttons
+   Close: Esc/X/clicking the dimmed area
+*/
+
+function initializeLightbox() {
+	const pages = [...document.querySelectorAll(".editorial-grid img")];
+	const lightbox = document.querySelector(".lightbox");
+	const bigImg = lightbox.querySelector(".lightbox-img");
+	let current = 0;
+
+	// --- Show a page ---
+	function showPage(index) {
+		current = (index + pages.length) % pages.length; // wraps from back cover to front
+		bigImg.src = pages[current].src;
+		bigImg.alt = pages[current].alt;
+	}
+
+	// --- Open ---
+	pages.forEach((img, index) => {
+		img.addEventListener("click", () => {
+			showPage(index);
+			lightbox.showModal();
+		});
+	});
+
+	// --- Prev/next ---
+	lightbox.querySelector(".lightbox-prev").addEventListener("click", () => showPage(current - 1));
+	lightbox.querySelector(".lightbox-next").addEventListener("click", () => showPage(current + 1));
+	lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+
+	// --- Close on backdrop click ---
+	lightbox.addEventListener("click", (event) => {
+		if (event.target === lightbox) lightbox.close();
+	});
+
+	// --- Arrow keys (Esc closes automatically) ---
+	document.addEventListener("keydown", (event) => {
+		if (!lightbox.open) return;
+		if (event.key === "ArrowLeft") showPage(current - 1);
+		if (event.key === "ArrowRight") showPage(current + 1);
+	});
+}
+
+initializeLightbox();
