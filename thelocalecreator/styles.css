@@ -22,6 +22,9 @@
   --accent-color: #f15b3d;
   --link-hover-color: #729bd1;
   --font-family: "Geist", sans-serif;
+  --primary-web-pink: #ff36b9;
+  --primary-blue: #729bd1;
+  --primary-line: #c26aa9;
   font-family: var(--font-family);
 }
 
@@ -110,6 +113,53 @@ a:hover {
 @media (max-width: 600px) {
   h1 {
     font-size: 2rem;
+  }
+}
+
+/* ===== Global site header + nav (shared by every page) ===== */
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+}
+.site-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  margin-left: auto;
+}
+.site-nav a {
+  display: inline-block;
+  color: #ff36b9;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: color 0.2s ease;
+}
+@media (max-width: 700px) {
+  .site-header {
+    min-height: 3.7rem;
+  }
+  .site-nav {
+    gap: 0.7rem;
+  }
+  .site-nav a {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 400px) {
+  .site-nav {
+    gap: 0.45rem;
+  }
+  .site-nav a {
+    font-size: 0.68rem;
   }
 }
 

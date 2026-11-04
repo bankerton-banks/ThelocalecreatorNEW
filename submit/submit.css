@@ -11,30 +11,7 @@ body {
   padding: 0.35rem 1.5rem 1rem;
 }
 .site-header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 4.5rem;
   border-bottom: 1px solid #ff36b9;
-}
-.site-logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.8rem;
-  margin-left: auto;
-}
-.site-nav a {
-  display: inline-block;
-  color: #ff36b9;
-  font-size: 20px;
-  text-decoration: none;
-  text-transform: lowercase;
 }
 .submit-content {
   position: relative;
@@ -138,15 +115,6 @@ body {
   .page-shell {
     padding: 0.35rem 1rem 1rem;
   }
-  .site-header {
-    min-height: 3.7rem;
-  }
-  .site-nav {
-    gap: 0.7rem;
-  }
-  .site-nav a {
-    font-size: 0.75rem;
-  }
   .submit-content {
     min-height: max(42rem, calc(100svh - 5rem));
   }
@@ -155,14 +123,6 @@ body {
   }
   .submission-action {
     margin-top: 1.5rem;
-  }
-}
-@media (max-width: 400px) {
-  .site-nav {
-    gap: 0.45rem;
-  }
-  .site-nav a {
-    font-size: 0.68rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -15,40 +15,6 @@ body {
   background: #0f1026;
 }
 
-.site-header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 4.5rem;
-  padding: 0 0 0.4rem;
-  margin-top: 0;
-}
-
-.site-logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.8rem;
-  margin-left: auto;
-}
-
-.site-nav a {
-  display: inline-block;
-  color: #ff36b9;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.06em;
-  text-decoration: none;
-  text-transform: lowercase;
-  transition: color 0.2s ease;
-}
-
 .issue-carousel {
   display: flex;
   flex-direction: column;
@@ -174,32 +140,9 @@ body {
     padding: 0.35rem 1rem 1rem;
   }
 
-  .site-header {
-    min-height: 3.7rem;
-    align-items: center;
-  }
-
-  .site-nav {
-    gap: 0.7rem;
-  }
-
-  .site-nav a {
-    font-size: 0.75rem;
-  }
-
   .issue figcaption {
     margin-top: 0.5rem;
     font-size: 1rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .site-nav {
-    gap: 0.45rem;
-  }
-
-  .site-nav a {
-    font-size: 0.68rem;
   }
 }
 
