@@ -30,6 +30,17 @@ body {
   margin-top: 1rem;
   color: #ff36b9;
 }
+/* Fixed-width label so the arrows stay put as the issue name changes. */
+.carousel-controls [data-issue-position] {
+  flex: none;
+  width: 10.5em;
+  white-space: nowrap;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.carousel-controls button {
+  flex: none;
+}
 .carousel-controls[hidden] {
   display: none;
 }
