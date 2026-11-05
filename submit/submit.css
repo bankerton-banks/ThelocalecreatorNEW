@@ -8,45 +8,139 @@ body {
 .page-shell {
   width: 100%;
   min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   padding: 0.35rem 1.5rem 1rem;
 }
 .site-header {
+  flex: none;
   border-bottom: 1px solid #ff36b9;
 }
+
+/* Main area: shapes drift across all of it, text sits on top. */
 .submit-content {
   position: relative;
   isolation: isolate;
-  min-height: calc(100svh - 6rem);
+  flex: 1;
   overflow: hidden;
 }
-.submit-intro {
+
+/* ---------- Background shapes ---------- */
+.shape-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  container-type: size;
+  /* Dimmed and slightly soft so the shapes read as background. */
+  filter: brightness(0.5) saturate(0.85) blur(1.5px);
+}
+.floating-shape {
+  position: absolute;
+  width: min(30vw, 50cqh);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+.floating-shape svg {
+  display: block;
+  width: 70%;
+  height: 70%;
+  overflow: visible;
+}
+/* Sizes and colors for each shape (desktop sizes cap at the field height). */
+.floating-shape:nth-child(1) { color: #729bd1; }
+.floating-shape:nth-child(2) { color: #ff36b9; }
+.floating-shape:nth-child(3) { color: #f15b3d; width: min(24vw, 42cqh); }
+.floating-shape:nth-child(4) { color: #ff36b9; width: min(16vw, 28cqh); }
+.floating-shape:nth-child(5) { color: #729bd1; width: min(20vw, 34cqh); }
+.floating-shape:nth-child(6) { color: #f15b3d; width: min(14vw, 24cqh); }
+.floating-shape:nth-child(7) { color: #729bd1; width: min(12vw, 20cqh); }
+.floating-shape:nth-child(8) { color: #ff36b9; width: min(22vw, 38cqh); }
+
+/* ---------- Split layout: intro left, steps right ---------- */
+.submit-content {
+  display: flex;
+  align-items: center;
+}
+.submit-column {
   position: relative;
   z-index: 1;
-  padding-top: 1.4rem;
-  pointer-events: none;
+  width: 100%;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 2rem 0 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 6rem);
 }
+
 .submit-intro h1 {
+  max-width: none;
   margin: 0;
+  text-align: left;
   color: #ff36b9;
-  font-size: clamp(4rem, 8.9vw, 8rem);
+  font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.06em;
-  text-align: left;
 }
 .submit-intro p {
-  max-width: 52rem;
-  margin: 1.5rem 0 0;
-  font-size: clamp(1.25rem, 2.3vw, 1.8rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  margin: 1.25rem 0 0;
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
 }
-.submission-action {
-  position: relative;
-  z-index: 2;
+
+/* ---------- How it works ---------- */
+.submit-steps {
   display: flex;
-  justify-content: center;
-  margin-top: clamp(2rem, 6vh, 4.5rem);
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vh, 2.5rem);
+  /* Line the steps heading up with the top of the intro text. */
+  padding-top: 1rem;
+}
+.submission-process h2 {
+  margin: 0 0 1.25rem;
+  color: #729bd1;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+.submission-process ol {
+  display: grid;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+.submission-process li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.submission-process li::before {
+  content: counter(step);
+  color: #ff36b9;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* ---------- Call to action ---------- */
+.submission-action {
+  display: flex;
+  justify-content: flex-start;
 }
 .submission-button {
   display: inline-flex;
@@ -62,7 +156,6 @@ body {
   font-size: clamp(1.3rem, 2.2vw, 1.8rem);
   font-weight: 500;
   letter-spacing: -0.03em;
-  opacity: 1;
   cursor: default;
 }
 .submission-button svg {
@@ -70,228 +163,34 @@ body {
   height: 2.8rem;
   flex: none;
 }
-.shape-field {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.floating-shape {
-  position: absolute;
-  width: clamp(15rem, 40vw, 40rem);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  will-change: transform;
-}
-.floating-shape svg {
-  display: block;
-  width: 70%;
-  height: 70%;
-  overflow: visible;
-}
-.floating-shape:nth-child(1) {
-  left: 0;
-  top: 40%;
-  color: #729bd1;
-}
-.floating-shape:nth-child(2) {
-  left: 35%;
-  top: 55%;
-  color: #ff36b9;
-}
-.floating-shape:nth-child(3) {
-  right: 0;
-  top: 35%;
-  color: #f15b3d;
-  width: clamp(12rem, 32vw, 32rem);
-}
-/* Shapes bounce within their own area, below the intro and above the steps. */
-.submit-intro {
-  padding-bottom: 1.25rem;
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 800px) {
+  .submit-content {
+    align-items: flex-start;
+  }
+  .submit-column {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1.25rem;
+  }
+  .submit-steps {
+    padding-top: 0;
+  }
 }
 @media (max-width: 700px) {
   .page-shell {
     padding: 0.35rem 1rem 1rem;
   }
-  .submit-content {
-    min-height: max(42rem, calc(100svh - 5rem));
+  .floating-shape {
+    width: min(55vw, 16rem);
   }
-  .submit-intro p {
-    max-width: 32rem;
-  }
-  .submission-action {
-    margin-top: 1.5rem;
+  .floating-shape:nth-child(n + 3) {
+    width: min(35vw, 10rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .floating-shape {
     will-change: auto;
   }
-}
-
-.submission-stage {
-  position: relative;
-  min-height: clamp(32rem, 52vw, 50rem);
-  display: flow-root;
-  isolation: isolate;
-}
-.submission-process {
-  max-width: 72rem;
-  margin: 0 auto 3rem;
-  padding-top: 1.5rem;
-}
-.submission-process h2 {
-  margin: 0 0 1.5rem;
-  color: #ff36b9;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 500;
-  letter-spacing: -0.06em;
-}
-.submission-process ol {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem 3rem;
-  margin: 0;
-  padding-left: 1.8rem;
-  font-size: clamp(1.15rem, 2vw, 1.6rem);
-  line-height: 1.25;
-  letter-spacing: -0.035em;
-}
-.submission-process li {
-  padding-left: 0.4rem;
-}
-.submission-process li::marker {
-  color: #ff36b9;
-  font-weight: 500;
-}
-@media (max-width: 700px) {
-  .submission-process ol {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-.submit-overview {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(2rem, 7vw, 7rem);
-  padding-top: 1.4rem;
-}
-.submit-overview .submit-intro {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.submit-overview .submission-process {
-  min-width: 0;
-  margin: 0;
-  padding-top: 0.5rem;
-}
-.submit-overview .submission-process ol {
-  grid-template-columns: 1fr;
-  gap: 1.1rem;
-}
-.submit-overview .submission-process h2 {
-  margin-bottom: 1.25rem;
-}
-@media (max-width: 800px) {
-  .submit-overview {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-/* Fit the desktop composition into one viewport. */
-@media (min-width: 801px) {
-  .page-shell {
-    height: 100svh;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .site-header {
-    flex: none;
-  }
-  .submit-content {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .submit-overview {
-    flex: none;
-    gap: clamp(2rem, 5vw, 5rem);
-    padding-top: 0.8rem;
-  }
-  .submit-intro h1 {
-    font-size: 128px;
-    letter-spacing: -0.06em;
-  }
-  .submit-intro p {
-    margin-top: 0.8rem;
-    font-size: clamp(1rem, 2.7svh, 1.6rem);
-  }
-  .submit-overview .submission-process h2 {
-    font-size: clamp(1.8rem, 5svh, 3rem);
-    margin-bottom: 0.7rem;
-  }
-  .submit-overview .submission-process ol {
-    font-size: clamp(1rem, 2.5svh, 1.4rem);
-    gap: 0.6rem;
-  }
-  .submission-stage {
-    flex: 1;
-    min-height: 0;
-    margin-top: 0.5rem;
-  }
-  .submission-action {
-    margin-top: 0.75rem;
-  }
-  .shape-field {
-    container-type: size;
-  }
-  .floating-shape {
-    width: min(32vw, 55cqh);
-  }
-  .floating-shape:nth-child(3) {
-    width: min(26vw, 48cqh);
-  }
-}
-@media (max-width: 800px) {
-  .submission-stage {
-    min-height: 18rem;
-  }
-  .floating-shape {
-    width: min(55vw, 16rem);
-  }
-  .floating-shape:nth-child(3) {
-    width: min(45vw, 14rem);
-  }
-  .submit-overview {
-    gap: 1.25rem;
-  }
-  .submission-action {
-    margin-top: 0.75rem;
-  }
-}
-
-/* Text sits above the drifting background shapes. */
-.submit-overview,
-.submission-stage {
-  position: relative;
-  z-index: 1;
-}
-.floating-shape {
-  opacity: 0.35;
-}
-/* Center the submission button in the space below the intro. */
-.submission-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.submission-stage .submission-action {
-  margin-top: 0;
 }
