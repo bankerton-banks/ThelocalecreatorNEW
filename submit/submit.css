@@ -253,10 +253,10 @@ body {
     container-type: size;
   }
   .floating-shape {
-    width: min(40vw, 95cqh);
+    width: min(32vw, 55cqh);
   }
   .floating-shape:nth-child(3) {
-    width: min(32vw, 85cqh);
+    width: min(26vw, 48cqh);
   }
 }
 @media (max-width: 800px) {
@@ -277,8 +277,21 @@ body {
   }
 }
 
-@media (min-width: 801px) {
-  .submission-action {
-    width: calc((100% - clamp(2rem, 5vw, 5rem)) * 1.15 / 2.15);
-  }
+/* Text sits above the drifting background shapes. */
+.submit-overview,
+.submission-stage {
+  position: relative;
+  z-index: 1;
+}
+.floating-shape {
+  opacity: 0.35;
+}
+/* Center the submission button in the space below the intro. */
+.submission-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.submission-stage .submission-action {
+  margin-top: 0;
 }
