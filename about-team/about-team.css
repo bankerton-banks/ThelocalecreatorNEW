@@ -84,55 +84,6 @@ body {
   letter-spacing: -0.06em;
 }
 
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 1200px;
-  gap: 4rem 4rem;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.team-card {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
-  align-items: stretch;
-  min-width: 0;
-  overflow: hidden;
-  border: 2px solid var(--about-pink);
-}
-
-.team-card > img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: center 20%;
-}
-
-.team-card-info {
-  min-width: 0;
-  padding: 0.6rem;
-  overflow-wrap: anywhere;
-}
-
-.team-card-info h3 {
-  margin: 0 0 0.35rem;
-  color: var(--about-pink);
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 1.05;
-}
-
-.team-card-info p {
-  margin: 0;
-  color: var(--about-pink);
-  font-size: 24px;
-  line-height: 1.15;
-}
-
 .lede {
   max-width: 72rem;
   margin: 1.5rem 0 0;
@@ -218,43 +169,121 @@ body {
     margin-bottom: 1.5rem;
     font-size: clamp(4rem, 18vw, 8rem);
   }
-
-  .team-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .team-card-info {
-    padding: 0.4rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .team-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* About-page typography refinements. */
 .team-link {
   letter-spacing: 0.06em;
 }
-.team-card-info h3 {
-  letter-spacing: -0.045em;
-}
-.team-card-info p {
-  letter-spacing: -0.055em;
-}
 .team-title-initial {
   margin-right: 0.025em;
 }
 
-.team-signature {
+/* ===== Team masthead ===== */
+/* A magazine-style list: headshot, name (with signature when there is
+   one), a dotted leader, and the role on the right. Everything is always
+   visible; no hover effects. */
+/* Two columns of people, read left to right. */
+.masthead {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(2rem, 5vw, 5rem);
+  max-width: 90rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.masthead-row {
+  display: grid;
+  grid-template-columns: 6rem auto minmax(1.5rem, 1fr) auto;
+  grid-template-areas:
+    "photo name leader role"
+    "photo sig  .      .   ";
+  grid-template-rows: auto 1fr;
+  column-gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 0;
+}
+/* Divider above every row except the first one in each column. */
+.masthead-row:nth-child(n + 3) {
+  border-top: 1px solid rgba(194, 106, 169, 0.35);
+}
+.masthead-portrait {
+  grid-area: photo;
+  margin: 0;
+}
+.masthead-portrait img {
   display: block;
   width: 100%;
-  max-width: 100%;
-  height: 10rem;
-  object-fit: contain;
-  object-position: center;
-  margin: 1rem auto 0;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.masthead-name {
+  grid-area: name;
+  align-self: end;
+  color: var(--about-pink);
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+.masthead-signature {
+  grid-area: sig;
+  align-self: start;
+  display: block;
+  width: auto;
+  height: 3.5rem;
+  margin-top: 0.25rem;
+}
+.masthead-leader {
+  grid-area: leader;
+  align-self: end;
+  border-bottom: 1px dotted var(--about-line);
+  margin-bottom: 0.45em;
+}
+.masthead-role {
+  grid-area: role;
+  align-self: end;
+  max-width: 13rem;
+  color: var(--about-blue);
+  font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  text-align: right;
+}
+
+/* Narrower screens: back to one column. */
+@media (max-width: 1100px) {
+  .masthead {
+    grid-template-columns: 1fr;
+  }
+  .masthead-row:nth-child(2) {
+    border-top: 1px solid rgba(194, 106, 169, 0.35);
+  }
+}
+
+/* Phones: smaller photo, name and role stacked, no dotted leader. */
+@media (max-width: 700px) {
+  .masthead-row {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    grid-template-areas:
+      "photo name"
+      "photo role"
+      "photo sig";
+    grid-template-rows: auto auto 1fr;
+    column-gap: 1rem;
+    row-gap: 0.2rem;
+  }
+  .masthead-leader {
+    display: none;
+  }
+  .masthead-role {
+    align-self: start;
+    max-width: none;
+    text-align: left;
+  }
+  .masthead-signature {
+    height: 2.25rem;
+  }
 }

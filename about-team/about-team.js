@@ -69,3 +69,4 @@ if (teamLink) {
   reducedMotion.addEventListener("change", animateTeamArrow);
   animateTeamArrow();
 }
+
