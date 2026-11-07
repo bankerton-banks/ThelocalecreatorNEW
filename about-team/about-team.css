@@ -5,12 +5,6 @@
   --about-line: #c26aa9;
 }
 
-*,
-*::before,
-*::after {
-  font-family: "Geist", sans-serif;
-}
-
 body {
   display: block;
   min-height: 100vh;
@@ -26,10 +20,6 @@ body {
   margin: 0 auto;
   padding: 1rem 1.5rem 2rem;
   background: var(--about-bg);
-}
-
-.site-header {
-  border-bottom: 1px solid var(--about-pink);
 }
 
 .team-link {

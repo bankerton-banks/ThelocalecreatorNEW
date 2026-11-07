@@ -15,6 +15,11 @@ body {
   background: #0f1026;
 }
 
+/* Homepage keeps its nav bar without the pink line. */
+.site-header {
+  border-bottom: 0;
+}
+
 .issue-carousel {
   display: flex;
   flex-direction: column;
@@ -171,4 +176,9 @@ body {
 }
 .carousel-controls [data-issue-prev] img {
   transform: rotate(180deg);
+}
+
+/* Cover links to that issue on the issues page. */
+.issue-link {
+  display: block;
 }

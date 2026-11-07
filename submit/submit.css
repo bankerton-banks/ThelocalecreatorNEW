@@ -14,7 +14,6 @@ body {
 }
 .site-header {
   flex: none;
-  border-bottom: 1px solid #ff36b9;
 }
 
 /* Main area: shapes drift across all of it, text sits on top. */

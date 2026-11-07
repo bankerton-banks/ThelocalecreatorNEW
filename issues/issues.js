@@ -18,82 +18,57 @@ window.LocaleCreator.initializeNavScribbles();
 */
 
 function initializeThumbScribbles() {
-	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-	const strokes = [
-		"M 20 6 C 50 2, 90 3, 108 8 C 116 12, 115 40, 114 72 C 113 105, 116 130, 106 138 C 85 143, 40 142, 14 137 C 4 132, 5 100, 4 70 C 3 40, 2 14, 14 7 C 22 3, 38 4, 52 5",
-		"M 112 50 C 113 85, 114 120, 104 134 C 80 140, 38 139, 16 134 C 7 128, 8 95, 7 66 C 6 38, 7 14, 18 10 C 45 6, 85 7, 104 11 C 112 15, 111 32, 112 62"
-	];
-
 	document.querySelectorAll(".issue-thumb").forEach((link) => {
 
-		// --- the SVG ---
-		const scribble = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		scribble.setAttribute("viewBox", "0 0 118 144");
-		scribble.setAttribute("preserveAspectRatio", "none");
-		scribble.setAttribute("aria-hidden", "true");
-		scribble.classList.add("thumb-scribble");
-
-		strokes.forEach((pathData) => {
-			const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-			path.setAttribute("d", pathData);
-			scribble.append(path);
+		// Same hand-drawn loop as the nav bar (see /scripts/navigation.js),
+		// shaped as a loose rounded rectangle to follow the tall cover.
+		const scribble = window.LocaleCreator.createScribble({
+			label: link.querySelector("img")?.alt || link.getAttribute("href"),
+			viewBox: [118, 144],
+			radius: [53, 66],
+			wobble: [2.5, 2.5],
+			squareness: 6,
+			tiltScale: 0.25,
+			className: "thumb-scribble"
 		});
+		link.append(scribble.element);
 
-		link.append(scribble);
-
-		// Hide each stroke until it's drawn
-		const paths = [...scribble.querySelectorAll("path")];
-		paths.forEach((path) => {
-			const length = path.getTotalLength();
-			path.style.strokeDasharray = `${length}`;
-			path.style.strokeDashoffset = `${length}`;
-		});
-
-		// --- Show / hide ---
 		function drawScribble() {
-			scribble.classList.add("is-active");
-
-			paths.forEach((path, index) => {
-				const length = path.getTotalLength();
-				path.getAnimations().forEach((animation) => animation.cancel());
-				path.style.strokeDashoffset = `${length}`;
-
-				if (reducedMotion) {
-					path.style.strokeDashoffset = "0";
-					return;
-				}
-
-				path.animate(
-					[{ strokeDashoffset: length }, { strokeDashoffset: 0 }],
-					{
-						duration: 520,
-						delay: index * 90,
-						easing: "cubic-bezier(0.2, 0.7, 0.25, 1)",
-						fill: "forwards"
-					}
-				);
-			});
+			if (scribble.isShown()) return; // selected cover stays drawn
+			scribble.draw();
 		}
 
 		function hideScribble() {
 			if (link.matches(":hover, :focus-visible") || link.classList.contains("is-selected")) return;
-			scribble.classList.remove("is-active");
+			scribble.hide();
 		}
 
 		// --- Select (keeps scribble on, clears the previous one) ---
-		function selectThumb(event) {
-			event.preventDefault();
-
+		// instant = true shows it already drawn, like the nav's current page.
+		function markSelected(instant) {
 			document.querySelectorAll(".issue-thumb.is-selected").forEach((other) => {
 				if (other === link) return;
 				other.classList.remove("is-selected");
 				other.removeAttribute("aria-current");
-				other.querySelector(".thumb-scribble").classList.remove("is-active");
+				other.hideScribble();
 			});
 
 			link.classList.add("is-selected");
 			link.setAttribute("aria-current", "true");
+			if (instant) scribble.show();
+			else drawScribble();
 		}
+
+		function selectThumb(event) {
+			event.preventDefault();
+			const issueId = link.getAttribute("href").slice(1);
+			if (!document.getElementById(issueId)) return; // no pages for this cover yet
+			showIssue(issueId);
+			history.replaceState(null, "", "#" + issueId);
+		}
+
+		link.markSelected = markSelected;
+		link.hideScribble = () => scribble.hide();
 
 		// --- Events ---
 		link.addEventListener("click", selectThumb);
@@ -108,6 +83,28 @@ initializeThumbScribbles();
 
 
 /*
+   ISSUE SWITCHING
+   Shows one .issue-layout at a time. The homepage links to
+   issues.html#issue-1 / #issue-2 to open a specific issue.
+*/
+
+function showIssue(issueId, instant = false) {
+	const sections = [...document.querySelectorAll(".issue-layout")];
+	const target = sections.find((section) => section.id === issueId) || sections[0];
+
+	sections.forEach((section) => {
+		section.hidden = section !== target;
+	});
+
+	const thumb = document.querySelector(`.issue-thumb[href="#${target.id}"]`);
+	if (thumb && thumb.markSelected) thumb.markSelected(instant);
+}
+
+showIssue(location.hash.slice(1), true);
+window.addEventListener("hashchange", () => showIssue(location.hash.slice(1)));
+
+
+/*
    3. LIGHTBOX
    Open: Click an editorial image
    Prev/next: Arrow keys as buttons
@@ -115,10 +112,12 @@ initializeThumbScribbles();
 */
 
 function initializeLightbox() {
-	const pages = [...document.querySelectorAll(".editorial-grid img")];
 	const lightbox = document.querySelector(".lightbox");
 	const bigImg = lightbox.querySelector(".lightbox-img");
 	let current = 0;
+
+	// Pages of the issue that is currently shown
+	let pages = [];
 
 	// --- Show a page ---
 	function showPage(index) {
@@ -128,9 +127,10 @@ function initializeLightbox() {
 	}
 
 	// --- Open ---
-	pages.forEach((img, index) => {
+	document.querySelectorAll(".editorial-grid img").forEach((img) => {
 		img.addEventListener("click", () => {
-			showPage(index);
+			pages = [...img.closest(".editorial-grid").querySelectorAll("img")];
+			showPage(pages.indexOf(img));
 			lightbox.showModal();
 		});
 	});
