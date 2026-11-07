@@ -195,7 +195,7 @@ body {
 }
 .masthead-row {
   display: grid;
-  grid-template-columns: 6rem auto minmax(1.5rem, 1fr) auto;
+  grid-template-columns: 8.5rem auto minmax(1.5rem, 1fr) auto;
   grid-template-areas:
     "photo name leader role"
     "photo sig  .      .   ";
@@ -233,7 +233,7 @@ body {
   align-self: start;
   display: block;
   width: auto;
-  height: 3.5rem;
+  height: 4.5rem;
   margin-top: 0.25rem;
 }
 .masthead-leader {
