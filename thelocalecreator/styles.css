@@ -241,3 +241,52 @@ body .page-shell {
     animation: none;
   }
 }
+
+/* ===== Global site footer (shared by every page) ===== */
+
+/* Page shell stacks header / main / footer so the footer sits at the bottom
+   of the window on short pages. */
+body .page-shell {
+  display: flex;
+  flex-direction: column;
+}
+body .page-shell > main {
+  flex: 1 0 auto;
+}
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: 2.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--primary-web-pink);
+  color: var(--primary-blue);
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+.site-footer p {
+  margin: 0;
+}
+.site-footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.site-footer-links a {
+  color: var(--primary-web-pink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-footer-links a:hover,
+.site-footer-links a:focus-visible {
+  color: var(--primary-blue);
+}
+@media (max-width: 700px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.8rem;
+  }
+}

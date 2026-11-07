@@ -37,7 +37,48 @@ window.LocaleCreator.initializeNavScribbles();
     spin: spins[index % spins.length],
     maxX: 0,
     maxY: 0,
+    size: 0,
   }));
+  // Each shape keeps its own cruising speed; the soft push only steers.
+  shapes.forEach((shape) => {
+    shape.speed = Math.hypot(shape.vx, shape.vy);
+  });
+
+  // ---- Soft push: shapes that drift close ease apart instead of overlapping.
+  // PUSH_RANGE: how close (relative to their sizes) before they start to react.
+  // PUSH_STRENGTH: how hard they steer away (higher = turns sooner/sharper).
+  const PUSH_RANGE = 1.15;
+  const PUSH_STRENGTH = 30;
+  function softPush(dt) {
+    for (let i = 0; i < shapes.length; i++) {
+      for (let j = i + 1; j < shapes.length; j++) {
+        const a = shapes[i];
+        const b = shapes[j];
+        // The drawn shape fills ~70% of its box; use a circle of that size.
+        const ra = a.size * 0.35;
+        const rb = b.size * 0.35;
+        const dx = b.x + b.size / 2 - (a.x + a.size / 2);
+        const dy = b.y + b.size / 2 - (a.y + a.size / 2);
+        const distance = Math.hypot(dx, dy) || 0.001;
+        const range = (ra + rb) * PUSH_RANGE;
+        if (distance >= range) continue;
+        // Stronger the closer they get, zero at the edge of the range.
+        const push = PUSH_STRENGTH * (1 - distance / range) * dt;
+        const nx = dx / distance;
+        const ny = dy / distance;
+        a.vx -= nx * push;
+        a.vy -= ny * push;
+        b.vx += nx * push;
+        b.vy += ny * push;
+      }
+    }
+    // Keep every shape at its cruising speed so pushes turn, not speed up.
+    shapes.forEach((shape) => {
+      const current = Math.hypot(shape.vx, shape.vy) || 1;
+      shape.vx = (shape.vx / current) * shape.speed;
+      shape.vy = (shape.vy / current) * shape.speed;
+    });
+  }
   let frame = null;
   let lastTime = null;
   let initialized = false;
@@ -47,6 +88,7 @@ window.LocaleCreator.initializeNavScribbles();
   }
   function measure() {
     shapes.forEach((shape, index) => {
+      shape.size = shape.element.offsetWidth;
       shape.maxX = Math.max(0, field.clientWidth - shape.element.offsetWidth);
       shape.maxY = Math.max(0, field.clientHeight - shape.element.offsetHeight);
       shape.x = initialized
@@ -65,6 +107,7 @@ window.LocaleCreator.initializeNavScribbles();
   function tick(time) {
     const dt = lastTime === null ? 0 : Math.min((time - lastTime) / 1000, 0.05);
     lastTime = time;
+    softPush(dt);
     shapes.forEach((shape) => {
       shape.x += shape.vx * dt;
       shape.y += shape.vy * dt;
