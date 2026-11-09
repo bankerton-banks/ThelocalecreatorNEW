@@ -34,8 +34,24 @@ body {
 .issue-heading {
     color: var(--issues-web-pink);
     min-width: 0;
+    margin: 0;               /* no default h1 margin, so the text centers cleanly */
     text-align: left;
 }
+
+/* Unselected issue text is faded; selected or hovered is full strength */
+.issue-thumb .issue-heading {
+    opacity: 0.4;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.issue-thumb.is-selected .issue-heading,
+.issue-thumb:hover .issue-heading,
+.issue-thumb:focus-visible .issue-heading {
+    opacity: 1;
+    color: var(--issues-blue);   /* selected + hovered text turns blue */
+}
+
+.iss
 
 .issue-heading h1 {
     margin: 0;
@@ -43,6 +59,7 @@ body {
     line-height: 1.02;
     font-weight: 500;
     text-align: left;
+    text-decoration: none;
 }
 
 .issue-thumbnails {
@@ -55,10 +72,18 @@ body {
 
 .issue-thumb {
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    height: 136px;
+    align-items: center;      /* text centered left/right in the box */
+    justify-content: center;  /* text centered top/bottom in the box */
+    gap: 10px;
+    width: 140px;
 }
 
-/* Scribble sits on top of the cover and circles it.
+/* Scribble circles the issue text. The text is centered in .issue-thumb,
+   so centering the scribble in the box centers it on the text.
    Keep the +18px in sync with the viewBox in issues.js */
 .thumb-scribble {
     position: absolute;
@@ -269,10 +294,16 @@ body:has(.lightbox[open]) {
 .lightbox-prev { left: 2rem; }
 .lightbox-next { right: 2rem; }
 
-.lightbox-prev svg,
-.lightbox-next svg {
-    width: 3.5rem;
-    height: 1.75rem;
+.lightbox-prev img,
+.lightbox-next img {
+    display: block;
+    width: 6rem;
+    height: auto;
+}
+
+/* Same arrow file, mirrored to point left */
+.lightbox-prev img {
+    transform: scaleX(-1);
 }
 
 .lightbox-prev:hover { transform: translate(-4px, -50%); }

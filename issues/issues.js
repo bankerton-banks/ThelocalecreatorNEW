@@ -24,10 +24,10 @@ function initializeThumbScribbles() {
 		// shaped as a loose rounded rectangle to follow the tall cover.
 		const scribble = window.LocaleCreator.createScribble({
 			label: link.querySelector("img")?.alt || link.getAttribute("href"),
-			viewBox: [118, 144],
-			radius: [53, 66],
+			viewBox: [118, 120],
+			radius: [56, 52],
 			wobble: [2.5, 2.5],
-			squareness: 6,
+			squareness: 2.5,
 			tiltScale: 0.25,
 			className: "thumb-scribble"
 		});
@@ -108,7 +108,8 @@ window.addEventListener("hashchange", () => showIssue(location.hash.slice(1)));
    3. LIGHTBOX
    Open: Click an editorial image
    Prev/next: Arrow keys as buttons
-   Close: Esc/X/clicking the dimmed area
+   Click left/right half of the screen: prev/next
+   Close: Esc/X
 */
 
 function initializeLightbox() {
@@ -140,9 +141,11 @@ function initializeLightbox() {
 	lightbox.querySelector(".lightbox-next").addEventListener("click", () => showPage(current + 1));
 	lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
 
-	// --- Close on backdrop click ---
+	// --- Click left/right half of the screen to go prev/next ---
 	lightbox.addEventListener("click", (event) => {
-		if (event.target === lightbox) lightbox.close();
+		if (event.target.closest(".lightbox-btn")) return; // buttons handle themselves
+		if (event.clientX < window.innerWidth / 2) showPage(current - 1);
+		else showPage(current + 1);
 	});
 
 	// --- Arrow keys (Esc closes automatically) ---

@@ -33,9 +33,15 @@
 
     <!-- Cover thumbnails: href="#issue-N" must match a section id below -->
     <section class="issue-thumbnails">
-        <a href="#issue-1" class="issue-thumb"><img src="../issues/covers/issue_1 front cover.jpg" alt="Issue 1 Cover"></a>
-        <a href="#issue-2" class="issue-thumb"><img src="../issues/covers/version3.1-01.jpg" alt="Issue 2 Cover"></a>
-        <a href="#" class="issue-thumb"><img src="#" alt="Issue 3 Cover"></a>
+        <a href="#issue-1" class="issue-thumb" data-issue="1">
+            <h1 class="issue-heading">ISSUE #1<br>Fall<br>2025</h1>
+        </a>
+        <a href="#issue-2" class="issue-thumb" data-issue="2">
+            <h1 class="issue-heading">ISSUE #2<br>Spring<br>2026</h1>
+        </a>
+        <a href="#issue-3" class="issue-thumb" data-issue="3">
+            <h1 class="issue-heading">ISSUE #3<br>Fall<br>2027</h1>
+        </a>
     </section>
 
     <!-- Issue 1 (Fall 2025). Only one issue section is shown at a time. -->
@@ -45,7 +51,6 @@
 
         <!-- Add editorial cover and text here -->
             <div class="grid-intro">
-            <h1 class="issue-heading">ISSUE #1<br>Fall<br>2025</h1>
             <img class="cover cover--front" src="../issues/scanned spreads_issue-1/issue_1 front cover.jpg" alt="Issue 1 front cover">
             </div>
 
@@ -103,13 +108,13 @@
         </button>
 
         <button class="lightbox-btn lightbox-prev" aria-label="Previous page">
-            <svg viewBox="0 0 48 24"><path d="M46 12 H4 M14 3 L4 12 L14 21"/></svg>
+            <img src="../Assets/custom arrow.svg" alt="">
         </button>
 
         <img class="lightbox-img" src="" alt="">
 
         <button class="lightbox-btn lightbox-next" aria-label="Next page">
-            <svg viewBox="0 0 48 24"><path d="M2 12 H44 M34 3 L44 12 L34 21"/></svg>
+            <img src="../Assets/custom arrow.svg" alt="">
         </button>
     </dialog>
 
