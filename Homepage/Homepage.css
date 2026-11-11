@@ -15,16 +15,38 @@ body {
   background: #0f1026;
 }
 
-/* Homepage keeps its nav bar without the pink line. */
+/* Homepage keeps its nav bar without the pink line, and sits tight to the top. */
+body .page-shell {
+  padding-top: 0;
+}
 .site-header {
+  min-height: 0;
+  padding-bottom: 0;
   border-bottom: 0;
+}
+
+/* Bigger wordmark on the homepage. */
+.site-logo {
+  width: 13rem;
+}
+
+/* Tighter tracking on all homepage type. */
+.site-nav a {
+  letter-spacing: -0.1em;
+}
+.site-footer {
+  letter-spacing: -0.07em;
 }
 
 .issue-carousel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.5rem auto 0;
+  margin: 0.25rem auto 0;
+  /* Side covers bleed off the edges; clip them so the page doesn't scroll sideways. */
+  overflow-x: clip;
+  width: calc(100% + 3rem);
+  margin-inline: -1.5rem;
 }
 .carousel-controls {
   order: 2;
@@ -103,7 +125,8 @@ body {
   box-shadow: 0 12px 28px #0005;
 }
 .issues.is-gallery {
-  --cover-width: min(26rem, calc((100vw - 3rem) / 3.12), calc((100svh - 12rem) * 0.75));
+  /* As tall as the screen allows (minus header, caption, arrows); side covers may bleed off-screen. */
+  --cover-width: min(calc(100vw / 2.3), calc((100svh - 19rem) * 0.75));
   display: grid;
   grid-template-columns: var(--cover-width);
   justify-content: center;
@@ -150,10 +173,17 @@ body {
 }
 @media (max-width: 700px) {
   .issues.is-gallery {
-    --cover-width: min(calc((100vw - 2rem) / 3.12), calc((100svh - 11rem) * 0.75));
+    --cover-width: min(calc(100vw / 1.6), calc((100svh - 12rem) * 0.75));
   }
   .page-shell {
-    padding: 0.35rem 1rem 1rem;
+    padding: 0 1rem 1rem;
+  }
+  .issue-carousel {
+    width: calc(100% + 2rem);
+    margin-inline: -1rem;
+  }
+  .site-logo {
+    width: 6.75rem;
   }
 
   .issue figcaption {
@@ -165,7 +195,7 @@ body {
 .issue figcaption,
 .issue-upcoming,
 .carousel-controls {
-  letter-spacing: -0.045em;
+  letter-spacing: -0.09em;
 }
 
 .carousel-controls button img {

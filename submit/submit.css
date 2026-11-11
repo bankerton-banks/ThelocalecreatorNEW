@@ -32,8 +32,8 @@ body {
   pointer-events: none;
   overflow: hidden;
   container-type: size;
-  /* Dimmed and slightly soft so the shapes read as background. */
-  filter: brightness(0.5) saturate(0.85) blur(1.5px);
+  /* Dimmed so the shapes read as background. */
+  filter: brightness(0.5) saturate(0.85);
 }
 .floating-shape {
   position: absolute;
