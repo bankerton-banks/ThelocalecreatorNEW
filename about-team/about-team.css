@@ -173,10 +173,21 @@ body {
 
 /* About-page typography refinements. */
 .team-link {
-  letter-spacing: 0.06em;
+  letter-spacing: -0.08em;
 }
+/* A little room between the drop-cap T and "he". */
 .team-title-initial {
-  margin-right: 0.025em;
+  margin-right: 0.07em;
+}
+
+/* Nav matches the homepage tracking. */
+.site-nav a {
+  letter-spacing: -0.1em;
+}
+
+/* Tighter tracking on the team list and footer (same as homepage footer). */
+.site-footer {
+  letter-spacing: -0.07em;
 }
 
 /* ===== Team masthead ===== */
@@ -226,7 +237,7 @@ body {
   font-size: clamp(1.4rem, 2.2vw, 2.1rem);
   font-weight: 400;
   line-height: 1.05;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.09em;
 }
 .masthead-signature {
   grid-area: sig;
@@ -249,7 +260,7 @@ body {
   color: var(--about-blue);
   font-size: clamp(0.95rem, 1.3vw, 1.2rem);
   line-height: 1.15;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.08em;
   text-align: right;
 }
 
