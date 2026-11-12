@@ -23,9 +23,16 @@ body {
 }
 
 .team-link {
+  position: absolute;
+  top: calc(100% + 0.8rem);
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   color: var(--about-pink);
+  font-size: 40px;
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.08em;
   text-decoration: none;
   text-transform: lowercase;
   transition: color 0.2s ease;
@@ -34,16 +41,6 @@ body {
 .team-link:hover,
 .team-link:focus-visible {
   color: var(--about-blue);
-}
-
-.team-link {
-  position: absolute;
-  top: calc(100% + 0.8rem);
-  right: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 40px;
 }
 
 .team-arrow {
@@ -171,9 +168,6 @@ body {
   }
 }
 
-.team-link {
-  letter-spacing: -0.08em;
-}
 .team-title-initial {
   margin-right: 0.07em;
 }
@@ -195,6 +189,7 @@ body {
   padding: 0;
   list-style: none;
 }
+
 .masthead-row {
   display: grid;
   grid-template-columns: 8.5rem auto minmax(1.5rem, 1fr) auto;
@@ -206,13 +201,16 @@ body {
   align-items: center;
   padding: 1rem 0;
 }
+
 .masthead-row:nth-child(n + 3) {
   border-top: 1px solid rgba(194, 106, 169, 0.35);
 }
+
 .masthead-portrait {
   grid-area: photo;
   margin: 0;
 }
+
 .masthead-portrait img {
   display: block;
   width: 100%;
@@ -220,6 +218,7 @@ body {
   object-fit: cover;
   object-position: center 20%;
 }
+
 .masthead-name {
   grid-area: name;
   align-self: end;
@@ -229,6 +228,7 @@ body {
   line-height: 1.05;
   letter-spacing: -0.09em;
 }
+
 .masthead-signature {
   grid-area: sig;
   align-self: start;
@@ -237,12 +237,14 @@ body {
   height: 4.5rem;
   margin-top: 0.25rem;
 }
+
 .masthead-leader {
   grid-area: leader;
   align-self: end;
   border-bottom: 1px dotted var(--about-line);
   margin-bottom: 0.45em;
 }
+
 .masthead-role {
   grid-area: role;
   align-self: end;
@@ -258,6 +260,7 @@ body {
   .masthead {
     grid-template-columns: 1fr;
   }
+
   .masthead-row:nth-child(2) {
     border-top: 1px solid rgba(194, 106, 169, 0.35);
   }
@@ -274,14 +277,17 @@ body {
     column-gap: 1rem;
     row-gap: 0.2rem;
   }
+
   .masthead-leader {
     display: none;
   }
+
   .masthead-role {
     align-self: start;
     max-width: none;
     text-align: left;
   }
+
   .masthead-signature {
     height: 2.25rem;
   }
