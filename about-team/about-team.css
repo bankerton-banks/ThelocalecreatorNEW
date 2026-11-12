@@ -171,30 +171,21 @@ body {
   }
 }
 
-/* About-page typography refinements. */
 .team-link {
   letter-spacing: -0.08em;
 }
-/* A little room between the drop-cap T and "he". */
 .team-title-initial {
   margin-right: 0.07em;
 }
 
-/* Nav matches the homepage tracking. */
 .site-nav a {
   letter-spacing: -0.1em;
 }
 
-/* Tighter tracking on the team list and footer (same as homepage footer). */
 .site-footer {
   letter-spacing: -0.07em;
 }
 
-/* ===== Team masthead ===== */
-/* A magazine-style list: headshot, name (with signature when there is
-   one), a dotted leader, and the role on the right. Everything is always
-   visible; no hover effects. */
-/* Two columns of people, read left to right. */
 .masthead {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -215,7 +206,6 @@ body {
   align-items: center;
   padding: 1rem 0;
 }
-/* Divider above every row except the first one in each column. */
 .masthead-row:nth-child(n + 3) {
   border-top: 1px solid rgba(194, 106, 169, 0.35);
 }
@@ -264,7 +254,6 @@ body {
   text-align: right;
 }
 
-/* Narrower screens: back to one column. */
 @media (max-width: 1100px) {
   .masthead {
     grid-template-columns: 1fr;
@@ -274,7 +263,6 @@ body {
   }
 }
 
-/* Phones: smaller photo, name and role stacked, no dotted leader. */
 @media (max-width: 700px) {
   .masthead-row {
     grid-template-columns: 4.5rem minmax(0, 1fr);

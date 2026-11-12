@@ -1,4 +1,3 @@
-
 :root {
     --donate-bg: var(--background-color);
     --donate-web-pink: var(--primary-web-pink);
@@ -30,25 +29,23 @@ body {
 }
 
 .heading-row .donate-button {
-  margin-left: auto;   /* forces it to the far right */
+  margin-left: auto;
   margin-top: 2.5rem;
 }
 
-/* BUTTON */
 .donate-button {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   width: 182px;
   height: 41px;
-  padding: 5px 1px 5px 10px;      /* small gap on the left, circle sits near the right edge */
+  padding: 5px 1px 5px 10px;
   background-color: var(--donate-web-pink);
   border: 2px solid var(--donate-web-pink);
   border-radius: 200px;
   text-decoration: none;
   transition: var(--donate-bg) 0.2s ease;
 
-  /* typography */
   color: #0F1026;
   font-size: 24px;
   font-style: normal;
@@ -66,16 +63,14 @@ body {
   flex-shrink: 0;
   border-radius: 50%;
   background-color: var(--donate-bg);
-  color: var(--donate-web-pink);   /* the arrow uses currentColor */
+  color: var(--donate-web-pink);
   transition: var(--donate-bg) 0.2s ease, color 0.2s ease;
 }
-
 
 .donate-button:hover {
   background-color: var(--donate-web-pink);
   border: 2px solid var(--donate-web-pink);
 }
-
 
 .content {
     padding-top: 1.4rem;
@@ -93,7 +88,7 @@ body {
 
 .donate-content p {
   margin: 0;
-  width: 972px;          /* adjust to match the line breaks in Figma */
+  width: 972px;
   color: var(--donate-blue);
   font-size: 48px;
   font-style: normal;

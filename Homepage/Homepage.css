@@ -15,7 +15,6 @@ body {
   background: #0f1026;
 }
 
-/* Homepage keeps its nav bar without the pink line, and sits tight to the top. */
 body .page-shell {
   padding-top: 0;
 }
@@ -25,12 +24,10 @@ body .page-shell {
   border-bottom: 0;
 }
 
-/* Bigger wordmark on the homepage. */
 .site-logo {
   width: 13rem;
 }
 
-/* Tighter tracking on all homepage type. */
 .site-nav a {
   letter-spacing: -0.1em;
 }
@@ -43,7 +40,6 @@ body .page-shell {
   flex-direction: column;
   align-items: center;
   margin: 0.25rem auto 0;
-  /* Side covers bleed off the edges; clip them so the page doesn't scroll sideways. */
   overflow-x: clip;
   width: calc(100% + 3rem);
   margin-inline: -1.5rem;
@@ -57,7 +53,6 @@ body .page-shell {
   margin-top: 1rem;
   color: #ff36b9;
 }
-/* Fixed-width label so the arrows stay put as the issue name changes. */
 .carousel-controls [data-issue-position] {
   flex: none;
   width: 10.5em;
@@ -125,7 +120,6 @@ body .page-shell {
   box-shadow: 0 12px 28px #0005;
 }
 .issues.is-gallery {
-  /* As tall as the screen allows (minus header, caption, arrows); side covers may bleed off-screen. */
   --cover-width: min(calc(100vw / 2.3), calc((100svh - 19rem) * 0.75));
   display: grid;
   grid-template-columns: var(--cover-width);
@@ -208,7 +202,6 @@ body .page-shell {
   transform: rotate(180deg);
 }
 
-/* Cover links to that issue on the issues page. */
 .issue-link {
   display: block;
 }

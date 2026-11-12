@@ -4,7 +4,6 @@ window.LocaleCreator.initializeNavScribbles();
   const field = document.querySelector(".shape-field");
   if (!field) return;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  // Starting spot (fraction of the field) and drift speed for each shape.
   const starts = [
     [0.04, 0.62],
     [0.5, 0.88],
@@ -39,14 +38,10 @@ window.LocaleCreator.initializeNavScribbles();
     maxY: 0,
     size: 0,
   }));
-  // Each shape keeps its own cruising speed; the soft push only steers.
   shapes.forEach((shape) => {
     shape.speed = Math.hypot(shape.vx, shape.vy);
   });
 
-  // ---- Soft push: shapes that drift close ease apart instead of overlapping.
-  // PUSH_RANGE: how close (relative to their sizes) before they start to react.
-  // PUSH_STRENGTH: how hard they steer away (higher = turns sooner/sharper).
   const PUSH_RANGE = 1.15;
   const PUSH_STRENGTH = 30;
   function softPush(dt) {
@@ -54,7 +49,6 @@ window.LocaleCreator.initializeNavScribbles();
       for (let j = i + 1; j < shapes.length; j++) {
         const a = shapes[i];
         const b = shapes[j];
-        // The drawn shape fills ~70% of its box; use a circle of that size.
         const ra = a.size * 0.35;
         const rb = b.size * 0.35;
         const dx = b.x + b.size / 2 - (a.x + a.size / 2);
@@ -62,7 +56,6 @@ window.LocaleCreator.initializeNavScribbles();
         const distance = Math.hypot(dx, dy) || 0.001;
         const range = (ra + rb) * PUSH_RANGE;
         if (distance >= range) continue;
-        // Stronger the closer they get, zero at the edge of the range.
         const push = PUSH_STRENGTH * (1 - distance / range) * dt;
         const nx = dx / distance;
         const ny = dy / distance;
@@ -72,7 +65,6 @@ window.LocaleCreator.initializeNavScribbles();
         b.vy += ny * push;
       }
     }
-    // Keep every shape at its cruising speed so pushes turn, not speed up.
     shapes.forEach((shape) => {
       const current = Math.hypot(shape.vx, shape.vy) || 1;
       shape.vx = (shape.vx / current) * shape.speed;

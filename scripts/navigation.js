@@ -1,26 +1,5 @@
 window.LocaleCreator = window.LocaleCreator || {};
 
-/*
-   SHARED SCRIBBLE
-   One hand-drawn pink loop style used across the site
-   (nav links, issue cover thumbnails, ...).
-
-   createScribble(options) returns:
-     element        the <svg> to append
-     draw()         animate the pen going round
-     show()         show it fully drawn, no animation
-     hide()         hide it
-     isShown()      whether it is visible
-
-   options:
-     label       text used to give each scribble its own stable wobble
-     viewBox     [width, height] of the drawing area
-     radius      [x, y] size of the loop
-     wobble      [x, y] how much each loop drifts in and out
-     squareness  2 = oval, higher = rounder rectangle
-     tiltScale   1 = full random tilt, 0 = no tilt
-     className   CSS class for the <svg>
-*/
 window.LocaleCreator.createScribble = function createScribble({
   label,
   viewBox,
@@ -34,7 +13,6 @@ window.LocaleCreator.createScribble = function createScribble({
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  // Stable per-label variations give each scribble its own continuous path.
   const seed = Array.from(label.trim().toLowerCase()).reduce(
     (value, character) => (value * 31 + character.charCodeAt(0)) >>> 0,
     7,
@@ -46,7 +24,6 @@ window.LocaleCreator.createScribble = function createScribble({
   const [width, height] = viewBox;
   const centerX = width / 2;
   const centerY = height / 2;
-  // Bends a circle toward a rounded rectangle (exponent 1 = plain oval).
   const shape = (value) =>
     Math.sign(value) * Math.abs(value) ** (2 / squareness);
 
@@ -54,7 +31,6 @@ window.LocaleCreator.createScribble = function createScribble({
   const steps = loops * 100;
   for (let step = 0; step <= steps; step++) {
     const progress = step / steps;
-    // Increasing angles move clockwise in SVG's downward-facing y axis.
     const angle = Math.PI + phase + progress * Math.PI * 2 * loops;
     const radiusX = radius[0] + wobble[0] * Math.sin(progress * 17 + phase);
     const radiusY = radius[1] + wobble[1] * Math.cos(progress * 23 + phase);
@@ -75,8 +51,6 @@ window.LocaleCreator.createScribble = function createScribble({
   path.setAttribute("d", points.join(" "));
   svg.append(path);
 
-  // Hide the stroke until it's drawn. Length is measured lazily because
-  // the SVG must be in the page before getTotalLength() works.
   let length = null;
   function prepare() {
     if (length === null) {
@@ -116,9 +90,6 @@ window.LocaleCreator.createScribble = function createScribble({
   };
 };
 
-/*
-   NAV SCRIBBLES
-*/
 window.LocaleCreator.initializeNavScribbles =
   function initializeNavScribbles() {
     document.querySelectorAll(".site-nav a").forEach((link) => {

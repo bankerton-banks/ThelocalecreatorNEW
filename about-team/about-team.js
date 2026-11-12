@@ -30,7 +30,6 @@ teamLink?.addEventListener("click", (event) => {
   scrollAnimationFrame = window.requestAnimationFrame(animateScroll);
 });
 
-// Keep the drawn arrow intact; a seamless ink pass travels along its strokes.
 if (teamLink) {
   const arrow = teamLink.querySelector(".team-arrow");
   const basePaths = Array.from(arrow.querySelectorAll("path"));
@@ -52,7 +51,6 @@ if (teamLink) {
       overlay.style.strokeDasharray = `${length * 0.35} ${length * 0.65}`;
       arrow.append(overlay);
       overlays.push(overlay);
-      // Moving by exactly one dash period makes the loop boundary seamless.
       animations.push(
         overlay.animate(
           [{ strokeDashoffset: 0 }, { strokeDashoffset: -length }],

@@ -80,9 +80,6 @@ a:hover {
   }
 }
 
-/* ===== Global site header + nav (shared by every page) ===== */
-
-/* Consistent header spacing across the site. */
 body .page-shell {
   padding-top: 0.35rem;
 }
@@ -98,7 +95,6 @@ body .page-shell {
   border-bottom: 1px solid var(--primary-web-pink);
 }
 
-/* Logo */
 .site-logo-wrap {
   display: flex;
   flex-shrink: 0;
@@ -137,7 +133,6 @@ body .page-shell {
   }
 }
 
-/* Nav links */
 .site-nav {
   display: flex;
   align-items: center;
@@ -162,7 +157,6 @@ body .page-shell {
   color: #729bd1;
 }
 
-/* Hand-drawn scribble around the hovered / current nav link */
 .nav-scribble {
   position: absolute;
   top: 50%;
@@ -196,7 +190,6 @@ body .page-shell {
   }
 }
 
-/* Header on smaller screens */
 @media (max-width: 700px) {
   .site-header {
     min-height: 3.7rem;
@@ -242,10 +235,6 @@ body .page-shell {
   }
 }
 
-/* ===== Global site footer (shared by every page) ===== */
-
-/* Page shell stacks header / main / footer so the footer sits at the bottom
-   of the window on short pages. */
 body .page-shell {
   display: flex;
   flex-direction: column;
@@ -253,8 +242,6 @@ body .page-shell {
 body .page-shell > main {
   flex: 1 0 auto;
 }
-/* Three columns: credit on the left, links centered, copyright on the right.
-   Equal outer columns keep the links in the exact middle of the page. */
 .site-footer {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
