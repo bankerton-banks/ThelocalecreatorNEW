@@ -7,8 +7,8 @@ function initializeThumbScribbles() {
       viewBox: [118, 120],
       radius: [56, 52],
       wobble: [2.5, 2.5],
-      squareness: 2.5,
-      tiltScale: 0.25,
+      squareness: 6,
+      tiltScale: 0.1,
       className: "thumb-scribble",
     });
     link.append(scribble.element);
