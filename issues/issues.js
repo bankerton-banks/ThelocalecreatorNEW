@@ -13,7 +13,6 @@ function initializeThumbScribbles() {
     });
     link.append(scribble.element);
 
-<<<<<<< HEAD
 		// Same hand-drawn loop as the nav bar,
 		const scribble = window.LocaleCreator.createScribble({
 			label: link.querySelector("img")?.alt || link.getAttribute("href"),
@@ -25,12 +24,6 @@ function initializeThumbScribbles() {
 			className: "thumb-scribble"
 		});
 		link.append(scribble.element);
-=======
-    function drawScribble() {
-      if (scribble.isShown()) return;
-      scribble.draw();
-    }
->>>>>>> fdca256f8ddcc619cef7296d43555b531349663a
 
     function hideScribble() {
       const isActive =
@@ -48,7 +41,6 @@ function initializeThumbScribbles() {
         other.hideScribble();
       });
 
-<<<<<<< HEAD
 		// --- Select (keeps scribble on, clears the previous one) ---
 		function markSelected(instant) {
 			document.querySelectorAll(".issue-thumb.is-selected").forEach((other) => {
@@ -57,10 +49,6 @@ function initializeThumbScribbles() {
 				other.removeAttribute("aria-current");
 				other.hideScribble();
 			});
-=======
-      link.classList.add("is-selected");
-      link.setAttribute("aria-current", "true");
->>>>>>> fdca256f8ddcc619cef7296d43555b531349663a
 
       if (instant) {
         scribble.show();
@@ -149,7 +137,6 @@ function initializeLightbox() {
 }
 
 initializeThumbScribbles();
-<<<<<<< HEAD
 
 
 /*
@@ -231,8 +218,4 @@ function initializeLightbox() {
 	});
 }
 
-=======
-showIssue(location.hash.slice(1), true);
-window.addEventListener("hashchange", () => showIssue(location.hash.slice(1)));
->>>>>>> fdca256f8ddcc619cef7296d43555b531349663a
 initializeLightbox();
