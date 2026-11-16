@@ -183,7 +183,7 @@ body {
     display: block;
     width: 100%;
     height: auto;
-    cursor: url("../issues/nav/arrow.png") 16 16, pointer;  /* Custom cursor */
+    cursor: pointer; 
 }
 
 /* First cell: heading on the left, front cover on the right */

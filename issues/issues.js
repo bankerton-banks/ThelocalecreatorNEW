@@ -20,8 +20,7 @@ window.LocaleCreator.initializeNavScribbles();
 function initializeThumbScribbles() {
 	document.querySelectorAll(".issue-thumb").forEach((link) => {
 
-		// Same hand-drawn loop as the nav bar (see /scripts/navigation.js),
-		// shaped as a loose rounded rectangle to follow the tall cover.
+		// Same hand-drawn loop as the nav bar,
 		const scribble = window.LocaleCreator.createScribble({
 			label: link.querySelector("img")?.alt || link.getAttribute("href"),
 			viewBox: [118, 120],
@@ -44,7 +43,6 @@ function initializeThumbScribbles() {
 		}
 
 		// --- Select (keeps scribble on, clears the previous one) ---
-		// instant = true shows it already drawn, like the nav's current page.
 		function markSelected(instant) {
 			document.querySelectorAll(".issue-thumb.is-selected").forEach((other) => {
 				if (other === link) return;
@@ -84,8 +82,6 @@ initializeThumbScribbles();
 
 /*
    ISSUE SWITCHING
-   Shows one .issue-layout at a time. The homepage links to
-   issues.html#issue-1 / #issue-2 to open a specific issue.
 */
 
 function showIssue(issueId, instant = false) {
@@ -114,8 +110,7 @@ window.addEventListener("hashchange", () => showIssue(location.hash.slice(1)));
 
 function initializeLightbox() {
 	const lightbox = document.querySelector(".lightbox");
-	const bigImg = lightbox.querySelector(".lightbox-img");
-	let current = 0;
+	const bigImg = lightbox.querySelector(".lightbox-img");	let current = 0;
 
 	// Pages of the issue that is currently shown
 	let pages = [];
@@ -124,8 +119,7 @@ function initializeLightbox() {
 	function showPage(index) {
 		current = (index + pages.length) % pages.length; // wraps from back cover to front
 		bigImg.src = pages[current].src;
-		bigImg.alt = pages[current].alt;
-	}
+		bigImg.alt = pages[current].alt;	}
 
 	// --- Open ---
 	document.querySelectorAll(".editorial-grid img").forEach((img) => {
@@ -141,14 +135,23 @@ function initializeLightbox() {
 	lightbox.querySelector(".lightbox-next").addEventListener("click", () => showPage(current + 1));
 	lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
 
-	// --- Click left/right half of the screen to go prev/next ---
+
+	// Button clicking
 	lightbox.addEventListener("click", (event) => {
 		if (event.target.closest(".lightbox-btn")) return; // buttons handle themselves
+
+		// Closes area behind page
+		if (event.target !== bigImg) {
+			lightbox.close();
+			return;
+		}
+
+		// The page itself: left half goes back, right half goes forward
 		if (event.clientX < window.innerWidth / 2) showPage(current - 1);
 		else showPage(current + 1);
 	});
 
-	// --- Arrow keys (Esc closes automatically) ---
+	// Arrow keys (Esc closes automatically) 
 	document.addEventListener("keydown", (event) => {
 		if (!lightbox.open) return;
 		if (event.key === "ArrowLeft") showPage(current - 1);
