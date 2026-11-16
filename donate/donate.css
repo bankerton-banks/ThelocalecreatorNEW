@@ -1,26 +1,24 @@
-
 :root {
-    --donate-bg: var(--background-color);
-    --donate-web-pink: var(--primary-web-pink);
-    --donate-blue: var(--primary-blue);
-    --donate-line: var(--primary-line);
+  --donate-bg: var(--background-color);
+  --donate-web-pink: var(--primary-web-pink);
+  --donate-blue: var(--primary-blue);
 }
 
 body {
-    display: block;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background: var(--donate-bg);
-    color: var(--donate-blue);
+  display: block;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--donate-bg);
+  color: var(--donate-blue);
 }
 
 .page-shell {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0 auto;
-    padding: 1rem 1.5rem 2rem;
-    background: var(--donate-bg);
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 2rem;
+  background: var(--donate-bg);
 }
 
 .heading-row {
@@ -30,70 +28,67 @@ body {
 }
 
 .heading-row .donate-button {
-  margin-left: auto;   /* forces it to the far right */
   margin-top: 2.5rem;
+  margin-left: auto;
 }
 
-/* BUTTON */
 .donate-button {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   width: 182px;
   height: 41px;
-  padding: 5px 1px 5px 10px;      /* small gap on the left, circle sits near the right edge */
+  padding: 5px 1px 5px 10px;
   background-color: var(--donate-web-pink);
   border: 2px solid var(--donate-web-pink);
   border-radius: 200px;
-  text-decoration: none;
-  transition: var(--donate-bg) 0.2s ease;
-
-  /* typography */
-  color: #0F1026;
+  color: #0f1026;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 40px;
   letter-spacing: -1.68px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
-
-.donate-button-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 37px;
-  height: 39px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background-color: var(--donate-bg);
-  color: var(--donate-web-pink);   /* the arrow uses currentColor */
-  transition: var(--donate-bg) 0.2s ease, color 0.2s ease;
-}
-
 
 .donate-button:hover {
   background-color: var(--donate-web-pink);
   border: 2px solid var(--donate-web-pink);
 }
 
+.donate-button-circle {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 39px;
+  border-radius: 50%;
+  background-color: var(--donate-bg);
+  color: var(--donate-web-pink);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
 
 .content {
-    padding-top: 1.4rem;
+  padding-top: 1.4rem;
 }
 
 .content h1 {
-    margin: 0;
-    color: var(--donate-web-pink);
-    font-size: 128px;
-    font-weight: 500;
-    line-height: 0.95;
-    letter-spacing: -0.06em;
-    text-align: left;
+  margin: 0;
+  color: var(--donate-web-pink);
+  font-size: 128px;
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  text-align: left;
 }
 
 .donate-content p {
+  width: 972px;
   margin: 0;
-  width: 972px;          /* adjust to match the line breaks in Figma */
   color: var(--donate-blue);
   font-size: 48px;
   font-style: normal;
@@ -103,13 +98,11 @@ body {
 }
 
 @media (max-width: 700px) {
-    .page-shell {
-        padding: 0.8rem 1rem 1.5rem;
-    }
+  .page-shell {
+    padding: 0.8rem 1rem 1.5rem;
+  }
 
-    .content {
-        padding-top: 2rem;
-    }
-
+  .content {
+    padding-top: 2rem;
+  }
 }
-

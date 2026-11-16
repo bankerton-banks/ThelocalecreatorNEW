@@ -15,17 +15,38 @@ body {
   background: #0f1026;
 }
 
-/* Homepage keeps its nav bar without the pink line. */
+body .page-shell {
+  padding-top: 0;
+}
+
 .site-header {
+  min-height: 0;
+  padding-bottom: 0;
   border-bottom: 0;
+}
+
+.site-logo {
+  width: 13rem;
+}
+
+.site-nav a {
+  letter-spacing: -0.1em;
+}
+
+.site-footer {
+  letter-spacing: -0.07em;
 }
 
 .issue-carousel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.5rem auto 0;
+  margin: 0.25rem auto 0;
+  overflow-x: clip;
+  width: calc(100% + 3rem);
+  margin-inline: -1.5rem;
 }
+
 .carousel-controls {
   order: 2;
   display: flex;
@@ -35,7 +56,7 @@ body {
   margin-top: 1rem;
   color: #ff36b9;
 }
-/* Fixed-width label so the arrows stay put as the issue name changes. */
+
 .carousel-controls [data-issue-position] {
   flex: none;
   width: 10.5em;
@@ -43,13 +64,13 @@ body {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.carousel-controls button {
-  flex: none;
-}
+
 .carousel-controls[hidden] {
   display: none;
 }
+
 .carousel-controls button {
+  flex: none;
   width: 2.75rem;
   height: 2.75rem;
   border: 0;
@@ -59,25 +80,30 @@ body {
   font-size: 1.4rem;
   cursor: pointer;
 }
+
 .carousel-controls button:hover {
   opacity: 0.65;
 }
+
 .carousel-controls button:focus-visible,
 .issues:focus-visible {
   outline: 2px solid #729bd1;
   outline-offset: 6px;
 }
+
 .issues {
   display: flex;
   gap: 1.5rem;
   width: 100%;
   overflow-x: auto;
 }
+
 .issue {
   flex: 0 0 min(70vw, 28rem, 52svh);
   min-width: 0;
   margin: 0;
 }
+
 .issue img {
   display: block;
   width: 100%;
@@ -85,12 +111,14 @@ body {
   object-fit: cover;
   box-shadow: 0 12px 28px #0005;
 }
+
 .issue figcaption {
   margin-top: 1rem;
   color: #ff36b9;
   font-size: 1.1rem;
   text-align: center;
 }
+
 .issue-upcoming {
   display: grid;
   aspect-ratio: 3 / 4;
@@ -102,8 +130,9 @@ body {
   text-align: center;
   box-shadow: 0 12px 28px #0005;
 }
+
 .issues.is-gallery {
-  --cover-width: min(26rem, calc((100vw - 3rem) / 3.12), calc((100svh - 12rem) * 0.75));
+  --cover-width: min(calc(100vw / 2.3), calc((100svh - 19rem) * 0.75));
   display: grid;
   grid-template-columns: var(--cover-width);
   justify-content: center;
@@ -115,6 +144,7 @@ body {
   touch-action: pan-y;
   isolation: isolate;
 }
+
 .is-gallery .issue {
   grid-area: 1 / 1;
   width: 100%;
@@ -122,38 +152,55 @@ body {
     transform 400ms ease,
     opacity 400ms ease;
 }
+
 .is-gallery .issue[data-depth="0"] {
   z-index: 3;
   transform: translateX(0);
   opacity: 1;
 }
+
 .is-gallery .issue[data-depth="1"] {
   z-index: 1;
   transform: translateX(103%) scale(0.96);
   opacity: 0.6;
 }
+
 .is-gallery .issue[data-depth="2"] {
   z-index: 1;
   transform: translateX(-103%) scale(0.96);
   opacity: 0.6;
 }
+
 .is-gallery .issue:not([data-depth="0"]) {
   pointer-events: none;
 }
+
 .is-gallery .issue:not([data-depth="0"]) figcaption {
   visibility: hidden;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .is-gallery .issue {
     transition: none;
   }
 }
+
 @media (max-width: 700px) {
   .issues.is-gallery {
-    --cover-width: min(calc((100vw - 2rem) / 3.12), calc((100svh - 11rem) * 0.75));
+    --cover-width: min(calc(100vw / 1.6), calc((100svh - 12rem) * 0.75));
   }
+
   .page-shell {
-    padding: 0.35rem 1rem 1rem;
+    padding: 0 1rem 1rem;
+  }
+
+  .issue-carousel {
+    width: calc(100% + 2rem);
+    margin-inline: -1rem;
+  }
+
+  .site-logo {
+    width: 6.75rem;
   }
 
   .issue figcaption {
@@ -165,7 +212,7 @@ body {
 .issue figcaption,
 .issue-upcoming,
 .carousel-controls {
-  letter-spacing: -0.045em;
+  letter-spacing: -0.09em;
 }
 
 .carousel-controls button img {
@@ -174,11 +221,11 @@ body {
   height: 100%;
   object-fit: contain;
 }
+
 .carousel-controls [data-issue-prev] img {
   transform: rotate(180deg);
 }
 
-/* Cover links to that issue on the issues page. */
 .issue-link {
   display: block;
 }

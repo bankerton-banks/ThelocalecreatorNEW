@@ -1,27 +1,25 @@
-
 :root {
-    --issues-bg: var(--background-color);
-    --issues-web-pink: var(--primary-web-pink);
-    --issues-blue: var(--primary-blue);
-    --issues-line: var(--primary-line);
-    --spread-ratio: 1.6;
+  --issues-bg: var(--background-color);
+  --issues-web-pink: var(--primary-web-pink);
+  --issues-blue: var(--primary-blue);
+  --spread-ratio: 1.6;
 }
 
 body {
-    display: block;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background: var(--issues-bg);
-    color: var(--issues-blue);
+  display: block;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--issues-bg);
+  color: var(--issues-blue);
 }
 
 .page-shell {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0 auto;
-    padding: 1rem 1.5rem 2rem;
-    background: var(--issues-bg);
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 2rem;
+  background: var(--issues-bg);
 }
 
 .heading-row {
@@ -30,153 +28,108 @@ body {
   justify-content: space-between;
 }
 
-/* //// THUMBNAILS  //// */
 .issue-heading {
-    color: var(--issues-web-pink);
-    min-width: 0;
-    margin: 0;               /* no default h1 margin, so the text centers cleanly */
-    text-align: left;
+  min-width: 0;
+  margin: 0;
+  color: var(--issues-web-pink);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.05;
+  text-align: left;
 }
 
-/* Unselected issue text is faded; selected or hovered is full strength */
+.issue-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
+.issue-thumbnails img {
+  display: block;
+  width: 100px;
+  height: 126px;
+  object-fit: cover;
+}
+
+.issue-thumb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 140px;
+  height: 136px;
+  text-decoration: none;
+}
+
 .issue-thumb .issue-heading {
-    opacity: 0.4;
-    transition: opacity 0.2s ease, color 0.2s ease;
+  opacity: 0.4;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
 }
 
 .issue-thumb.is-selected .issue-heading,
 .issue-thumb:hover .issue-heading,
 .issue-thumb:focus-visible .issue-heading {
-    opacity: 1;
-    color: var(--issues-blue);   /* selected + hovered text turns blue */
+  opacity: 1;
+  color: var(--issues-blue);
 }
 
-.iss
-
-.issue-heading h1 {
-    margin: 0;
-    font-size: clamp(1.4rem, 2.4vw, 1.5rem);
-    line-height: 1.02;
-    font-weight: 500;
-    text-align: left;
-    text-decoration: none;
-}
-
-.issue-thumbnails {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 20px;
-    margin-top: 16px;
-}
-
-.issue-thumb {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    height: 136px;
-    align-items: center;      /* text centered left/right in the box */
-    justify-content: center;  /* text centered top/bottom in the box */
-    gap: 10px;
-    width: 140px;
-}
-
-/* Scribble circles the issue text. The text is centered in .issue-thumb,
-   so centering the scribble in the box centers it on the text.
-   Keep the +18px in sync with the viewBox in issues.js */
 .thumb-scribble {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: calc(100% + 18px);
-    height: calc(100% + 18px);
-    overflow: visible;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.12s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: calc(100% + 18px);
+  height: calc(100% + 18px);
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
 }
 
 .thumb-scribble.is-active {
-    opacity: 1;
+  opacity: 1;
 }
 
 .thumb-scribble path {
-    fill: none;
-    stroke: #ff36b9;
-    stroke-width: 1;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;   /* same thin line as the nav */
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .thumb-scribble {
-        transition: none;
-    }
-}
-
-.issue-thumbnails img {
-    display: block;
-    width: 100px;
-    height: 126px;
-    object-fit: cover;
-}
-
-/* //// MAIN LAYOUT //// */
-.issue-layout[hidden] {
-    display: none;
-}
-
-.issue-note {
-    grid-column: span 2;
-    align-self: center;
-    margin: 0;
-    color: var(--issues-blue);
-    font-size: 20px;
-    font-weight: 500;
+  fill: none;
+  stroke: #ff36b9;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .issue-layout {
-    align-items: start;
+  align-items: start;
 }
 
-/* //// FEATURED IMAGE //// */
-.featured-issue {
-    width: 100%;
-    min-width: 0;
-    align-self: start;
+.issue-layout[hidden] {
+  display: none;
 }
 
-.featured-issue img {
-    display: block;
-    width: 100%;
-    height: auto;
+.issue-note {
+  grid-column: span 2;
+  align-self: center;
+  margin: 0;
+  color: var(--issues-blue);
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.issue-caption {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    margin-top: 14px;
-
-    font-size: 12px;
-    color: var(--issues-web-pink);
-    font-weight: 500;
-}
-
-/* EDITORIAL GALLERY */
 .editorial-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 16px 10px;
-    align-content: start;
-    align-self: start;
-    min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px 10px;
+  align-content: start;
+  align-self: start;
+  min-width: 0;
 }
 
 .editorial-grid img {
@@ -186,158 +139,154 @@ body {
     cursor: pointer; 
 }
 
-/* First cell: heading on the left, front cover on the right */
 .grid-intro {
-    position: relative;
-    aspect-ratio: var(--spread-ratio); /* same height as a spread */
-}
-
-.issue-heading {
-    margin: 0;
-    color: var(--issues-web-pink);
-    font-size: 28px;
-    line-height: 1.05;
-    font-weight: 500;
-    text-align: left;
+  position: relative;
+  aspect-ratio: var(--spread-ratio);
 }
 
 .editorial-grid .cover--front {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: auto;
-    height: 100%;        /* matches spread height, keeps its own shape */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  height: 100%;
 }
 
-/* Back cover: spread height, sits on the left of its cell */
 .editorial-grid .cover--back {
-    aspect-ratio: var(--spread-ratio);
-    object-fit: contain;
-    object-position: left center;
+  aspect-ratio: var(--spread-ratio);
+  object-fit: contain;
+  object-position: left center;
 }
 
-
-/* Lightbox */
 .lightbox {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
 .lightbox[open] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lightbox::backdrop {
-    background: rgba(20, 20, 20, 0.75);
+  background: rgba(20, 20, 20, 0.75);
 }
 
-/* Stop the page scrolling behind it */
 body:has(.lightbox[open]) {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .lightbox-img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: min(80vw, 1200px);
-    max-height: 80vh;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(80vw, 1200px);
+  max-height: 80vh;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Buttons */
 .lightbox-btn {
-    position: absolute;
-    padding: 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--issues-accent);
-    transition: transform 0.2s ease;
+  position: absolute;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .lightbox-btn svg {
-    display: block;
-    fill: none;
-    stroke: var(--issues-web-pink);
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  display: block;
+  fill: none;
+  stroke: var(--issues-web-pink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .lightbox-close {
-    top: 1.5rem;
-    left: 1.5rem;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.lightbox-close:hover {
+  transform: rotate(90deg);
 }
 
 .lightbox-close svg {
-    width: 2.5rem;
-    height: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .lightbox-prev,
 .lightbox-next {
-    top: 50%;
-    transform: translateY(-50%);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.lightbox-prev { left: 2rem; }
-.lightbox-next { right: 2rem; }
+.lightbox-prev {
+  left: 2rem;
+}
+
+.lightbox-next {
+  right: 2rem;
+}
+
+.lightbox-prev:hover {
+  transform: translate(-4px, -50%);
+}
+
+.lightbox-next:hover {
+  transform: translate(4px, -50%);
+}
 
 .lightbox-prev img,
 .lightbox-next img {
-    display: block;
-    width: 6rem;
-    height: auto;
+  display: block;
+  width: 6rem;
+  height: auto;
 }
 
-/* Same arrow file, mirrored to point left */
 .lightbox-prev img {
-    transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
-.lightbox-prev:hover { transform: translate(-4px, -50%); }
-.lightbox-next:hover { transform: translate(4px, -50%); }
-.lightbox-close:hover { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) {
+  .thumb-scribble {
+    transition: none;
+  }
+}
 
 @media (max-width: 700px) {
-    .lightbox-img {
-        max-width: 92vw;
-    }
+  .page-shell {
+    padding: 0.8rem 1rem 1.5rem;
+  }
 
-    .lightbox-prev,
-    .lightbox-next {
-        top: auto;
-        bottom: 1.5rem;
-        transform: none;
-    }
+  .content {
+    padding-top: 2rem;
+  }
 
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-        transform: none;
-    }
+  .lightbox-img {
+    max-width: 92vw;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    top: auto;
+    bottom: 1.5rem;
+    transform: none;
+  }
+
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    transform: none;
+  }
 }
-
-
-
-@media (max-width: 700px) {
-    .page-shell {
-        padding: 0.8rem 1rem 1.5rem;
-    }
-
-    .content {
-        padding-top: 2rem;
-    }
-
-}
-
