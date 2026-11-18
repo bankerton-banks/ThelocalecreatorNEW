@@ -9,6 +9,7 @@ body {
 
 .page-shell {
   width: 100%;
+  height: 100svh;
   min-height: 100svh;
   margin: 0 auto;
   padding: 0.35rem 1.5rem 1rem;
@@ -16,14 +17,28 @@ body {
 }
 
 .site-header {
+  flex-shrink: 0;
   border-bottom: 0;
 }
 
 .site-logo {
-  width: 7rem;
+  width: 8rem;
+}
+
+.site-nav {
+  /* Match the shared flower logo's row, independent of wordmark height. */
+  align-self: flex-start;
+  min-height: 4.25rem;
+}
+
+body .page-shell > main {
+  flex: 1 1 0;
+  min-height: 0;
+  container-type: size;
 }
 
 .site-footer {
+  flex-shrink: 0;
   margin-top: 1.5rem;
   letter-spacing: -0.07em;
 }
@@ -123,7 +138,8 @@ body {
 }
 
 .issues.is-gallery {
-  --cover-width: min(calc(100vw / 2.3), calc((100svh - 19rem) * 0.75));
+  /* Reserve room for captions, controls, and their spacing inside main. */
+  --cover-width: min(calc(100vw / 2.3), max(0px, calc((100cqh - 7.5rem) * 0.75)));
   display: grid;
   grid-template-columns: var(--cover-width);
   justify-content: center;
@@ -177,12 +193,16 @@ body {
 }
 
 @media (max-width: 700px) {
+  .site-nav {
+    min-height: 3.25rem;
+  }
+
   .site-logo {
-    width: 5rem;
+    width: 5.5rem;
   }
 
   .issues.is-gallery {
-    --cover-width: min(calc(100vw / 1.6), max(6rem, calc((100svh - 18rem) * 0.75)));
+    --cover-width: min(calc(100vw / 1.6), max(0px, calc((100cqh - 7.5rem) * 0.75)));
   }
 
   .page-shell {
