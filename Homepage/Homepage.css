@@ -15,25 +15,16 @@ body {
   background: #0f1026;
 }
 
-body .page-shell {
-  padding-top: 0;
-}
-
 .site-header {
-  min-height: 0;
-  padding-bottom: 0;
   border-bottom: 0;
 }
 
 .site-logo {
-  width: 13rem;
-}
-
-.site-nav a {
-  letter-spacing: -0.1em;
+  width: 7rem;
 }
 
 .site-footer {
+  margin-top: 1.5rem;
   letter-spacing: -0.07em;
 }
 
@@ -186,8 +177,12 @@ body .page-shell {
 }
 
 @media (max-width: 700px) {
+  .site-logo {
+    width: 5rem;
+  }
+
   .issues.is-gallery {
-    --cover-width: min(calc(100vw / 1.6), calc((100svh - 12rem) * 0.75));
+    --cover-width: min(calc(100vw / 1.6), max(6rem, calc((100svh - 18rem) * 0.75)));
   }
 
   .page-shell {
@@ -197,10 +192,6 @@ body .page-shell {
   .issue-carousel {
     width: calc(100% + 2rem);
     margin-inline: -1rem;
-  }
-
-  .site-logo {
-    width: 6.75rem;
   }
 
   .issue figcaption {
