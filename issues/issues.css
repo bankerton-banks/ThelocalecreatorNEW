@@ -133,12 +133,10 @@ body {
 }
 
 .editorial-grid img {
-  display: block;
-  width: 100%;
-  height: auto;
-  cursor:
-    url("../issues/nav/arrow.png") 16 16,
-    pointer;
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: pointer; 
 }
 
 .grid-intro {

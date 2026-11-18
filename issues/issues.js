@@ -5,10 +5,10 @@ function initializeThumbScribbles() {
     const scribble = window.LocaleCreator.createScribble({
       label: link.querySelector("img")?.alt || link.getAttribute("href"),
       viewBox: [118, 120],
-      radius: [56, 52],
+      radius: [54, 56],
       wobble: [2.5, 2.5],
       squareness: 6,
-      tiltScale: 0.1,
+      tiltScale: 0.2,
       className: "thumb-scribble",
     });
     link.append(scribble.element);
@@ -109,6 +109,13 @@ function initializeLightbox() {
   lightbox.addEventListener("click", (event) => {
     if (event.target.closest(".lightbox-btn")) return;
 
+    // Clicking the dark area behind the page closes the lightbox
+    if (event.target !== bigImg) {
+      lightbox.close();
+      return;
+    }
+
+    // The page itself: left half goes back, right half goes forward
     if (event.clientX < window.innerWidth / 2) {
       showPrevious();
     } else {
